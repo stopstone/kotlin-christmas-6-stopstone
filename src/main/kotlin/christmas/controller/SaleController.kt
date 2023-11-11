@@ -4,7 +4,12 @@ import christmas.model.Date
 import christmas.model.MenuItem
 
 class SaleController {
-    fun saleOFWeekendOrWeekday(dateNumber: Int, menuItems: List<MenuItem>) {
+    fun saleRun(dateNumber: Int, menuItems: List<MenuItem>) {
+        saleOfChristmas(dateNumber)
+        saleOFWeekendOrWeekday(dateNumber, menuItems)
+
+    }
+    private fun saleOFWeekendOrWeekday(dateNumber: Int, menuItems: List<MenuItem>) {
         val date = Date()
         val day = date.calculateDay(dateNumber)
 
@@ -14,6 +19,14 @@ class SaleController {
         }
     }
 
+    private fun saleOfChristmas(dateNumber: Int): Int {
+        val christmasSale = 1000
+        var cumulativeAmount = 0
+        if(dateNumber <= 25) {
+            cumulativeAmount = dateNumber * 100
+        }
+        return christmasSale + cumulativeAmount
+    }
     private fun saleOfWeekend(menuItems: List<MenuItem>) {
         val mainSale = menuItems.filter { it.menu.itemCategory == "메인" }
         return mainSale.forEach { it.count * 2023 }

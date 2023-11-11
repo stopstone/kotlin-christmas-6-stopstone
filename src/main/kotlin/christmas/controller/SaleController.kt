@@ -7,6 +7,7 @@ class SaleController {
     fun saleRun(dateNumber: Int, menuItems: List<MenuItem>) {
         saleOfChristmas(dateNumber)
         saleOFWeekendOrWeekday(dateNumber, menuItems)
+        saleOfSpecial(dateNumber, menuItems)
 
     }
     private fun saleOFWeekendOrWeekday(dateNumber: Int, menuItems: List<MenuItem>) {
@@ -35,5 +36,15 @@ class SaleController {
     private fun saleOfWeekday(menuItems: List<MenuItem>) {
         val dessertSale = menuItems.filter { it.menu.itemCategory == "디저트" }
         return dessertSale.forEach { it.count * 2023 }
+    }
+
+    private fun saleOfSpecial(dateNumber: Int, menuItems: List<MenuItem>): Int {
+        val starDays = listOf(3, 10, 17, 24, 25, 31)
+        val totalAmount = menuItems.sumOf { it.menu.itemPrice * it.count }
+
+        if (dateNumber in starDays) {
+            return (totalAmount - 1_000)
+        }
+        return totalAmount
     }
 }

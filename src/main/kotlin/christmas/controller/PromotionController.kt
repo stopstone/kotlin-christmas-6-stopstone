@@ -59,6 +59,6 @@ class PromotionController(private val inputView: InputView, private val outputVi
 
     private fun discountPrice(dateNumber: Int) {
         val saleController = SaleController()
-        saleController.saleOFWeekendOrWeekday(dateNumber, menuItems)
+        saleController.saleRun(dateNumber, menuItems)
     }
 }

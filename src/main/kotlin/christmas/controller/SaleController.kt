@@ -20,7 +20,7 @@ class SaleController {
     }
 
     private fun saleOfWeekday(menuItems: List<MenuItem>) {
-        val mainSale = menuItems.filter { it.menu.itemCategory == "디저트" }
-        return mainSale.forEach { it.count * 2023 }
+        val dessertSale = menuItems.filter { it.menu.itemCategory == "디저트" }
+        return dessertSale.forEach { it.count * 2023 }
     }
 }

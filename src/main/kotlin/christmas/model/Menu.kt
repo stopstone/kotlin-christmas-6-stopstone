@@ -43,8 +43,8 @@ fun createMenuItems(items: List<String>): List<MenuItem> {
     return menuItems
 }
 
-fun findMenuItems(menuItems: String): String {
-    val menu = Menu.entries.find { it.name == menuItems }
-    require(menu != null) { "$ERROR_MESSAGE $INVALID_ORDER_MESSAGE" }
-    return menu.toString()
+
+fun findMenuItems(menuName: String): Menu {
+    return Menu.entries.find { it.itemName == menuName }
+        ?: throw IllegalArgumentException("$ERROR_MESSAGE $INVALID_ORDER_MESSAGE")
 }

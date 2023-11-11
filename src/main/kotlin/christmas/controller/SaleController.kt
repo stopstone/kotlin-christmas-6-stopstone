@@ -4,10 +4,6 @@ import christmas.model.Date
 import christmas.model.MenuItem
 
 class SaleController {
-    fun menuPriceCal(menuItems: List<MenuItem>) {
-        println(menuItems.map { it.menu.itemPrice * it.count })
-    }
-
     fun saleOFWeekendOrWeekday(dateNumber: Int, menuItems: List<MenuItem>) {
         val date = Date()
         val day = date.calculateDay(dateNumber)

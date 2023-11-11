@@ -3,7 +3,7 @@ package christmas.controller
 import christmas.view.InputView
 import christmas.view.OutputView
 
-class PromotionController(outputView1: InputView, private val outputView: OutputView) {
+class PromotionController(private val inputView: InputView, private val outputView: OutputView) {
     init {
         outputView.printWelcomeRestaurant()
     }
@@ -14,6 +14,6 @@ class PromotionController(outputView1: InputView, private val outputView: Output
 
     private fun readDateNumber() {
         outputView.inputVisitDateMessage()
-
+        inputView.inputDate()
     }
 }

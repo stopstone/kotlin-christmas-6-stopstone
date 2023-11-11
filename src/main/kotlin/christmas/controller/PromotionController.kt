@@ -38,9 +38,11 @@ class PromotionController(private val inputView: InputView, private val outputVi
             try {
                 val order = inputView.inputMenu()
                 val items = checkDuplicateMenu(order)
-                val menuItems = createMenuItems(items)
+                createMenuItems(items)
                 break
             } catch (e: IllegalArgumentException) {
+                println(e.message)
+            } catch (e: IndexOutOfBoundsException) {
                 println(e.message)
             }
         }

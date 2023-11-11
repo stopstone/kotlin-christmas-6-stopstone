@@ -3,7 +3,6 @@ package christmas.model
 import christmas.utils.Messages.ERROR_MESSAGE
 import christmas.utils.Messages.INVALID_ORDER_MESSAGE
 import christmas.validator.ValidateOrder.checkMinOrderMenu
-import java.lang.IllegalArgumentException
 
 enum class Menu(val itemName: String, val itemPrice: Int) {
     APPETIZER_MUSHROOM_SOUP("양송이수프", 6000),
@@ -24,8 +23,12 @@ enum class Menu(val itemName: String, val itemPrice: Int) {
 }
 
 fun createMenuItem(item: String): MenuItem {
-    val (menu, count) = item.split("-")
-    return MenuItem(findMenuItems(menu), count.toInt())
+    try {
+        val (menu, count) = item.split("-")
+        return MenuItem(findMenuItems(menu), count.toInt())
+    } catch (e: IndexOutOfBoundsException) {
+        throw IndexOutOfBoundsException("$ERROR_MESSAGE $INVALID_ORDER_MESSAGE")
+    }
 }
 
 fun createMenuItems(items: List<String>): List<MenuItem> {

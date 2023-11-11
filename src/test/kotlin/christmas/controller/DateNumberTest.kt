@@ -1,10 +1,8 @@
 package christmas.controller
 
 import christmas.utils.Messages.ERROR_MESSAGE
-import christmas.utils.Messages.INVALID_MESSAGE
+import christmas.utils.Messages.INVALID_DATE_MESSAGE
 import christmas.validator.ValidateDate.validate
-import christmas.view.InputView
-import christmas.view.OutputView
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
@@ -15,7 +13,7 @@ class DateNumberTest {
              validate("")
         } catch (e: IllegalArgumentException) {
             println(e.message)
-            assertEquals("$ERROR_MESSAGE $INVALID_MESSAGE", e.message)
+            assertEquals("$ERROR_MESSAGE $INVALID_DATE_MESSAGE", e.message)
         }
     }
 
@@ -25,7 +23,7 @@ class DateNumberTest {
             validate("42")
         } catch (e: IllegalArgumentException) {
             println(e.message)
-            assertEquals("$ERROR_MESSAGE $INVALID_MESSAGE", e.message)
+            assertEquals("$ERROR_MESSAGE $INVALID_DATE_MESSAGE", e.message)
         }
     }
 
@@ -35,7 +33,7 @@ class DateNumberTest {
             validate("우아한")
         } catch (e: IllegalArgumentException) {
             println(e.message)
-            assertEquals("$ERROR_MESSAGE $INVALID_MESSAGE", e.message)
+            assertEquals("$ERROR_MESSAGE $INVALID_DATE_MESSAGE", e.message)
         }
     }
 }

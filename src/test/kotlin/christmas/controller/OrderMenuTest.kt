@@ -16,4 +16,15 @@ class OrderMenuTest {
             Assertions.assertEquals("${Messages.ERROR_MESSAGE} ${Messages.INVALID_ORDER_MESSAGE}", e.message)
         }
     }
+
+
+@Test
+fun `메뉴가 하나도 주문되지 않았을 경우`() {
+    try {
+        ValidateOrder.checkMinOrderMenu(listOf(""))
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+        Assertions.assertEquals("${Messages.ERROR_MESSAGE} ${Messages.INVALID_ORDER_MESSAGE}", e.message)
+    }
+}
 }

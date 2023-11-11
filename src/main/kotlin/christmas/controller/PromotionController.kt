@@ -16,13 +16,13 @@ class PromotionController(private val inputView: InputView, private val outputVi
 
     private lateinit var date: Date
     private lateinit var menuItems: List<MenuItem>
-
     fun promotionStart() {
-        //readDateNumber()
+        val dateNumber = readDateNumber()
         orderMenu()
+        discountPrice(dateNumber)
     }
 
-    private fun readDateNumber() {
+    private fun readDateNumber(): Int {
         outputView.inputVisitDateMessage()
         var dateNumber: String
         while (true) {
@@ -37,7 +37,7 @@ class PromotionController(private val inputView: InputView, private val outputVi
                 println(e.message)
             }
         }
-        date.calculateDay(dateNumber.toInt())
+        return dateNumber.toInt()
     }
 
     private fun orderMenu() {
@@ -57,8 +57,8 @@ class PromotionController(private val inputView: InputView, private val outputVi
 
     }
 
-    private fun discountPrice() {
+    private fun discountPrice(dateNumber: Int) {
         val saleController = SaleController()
-        saleController.menuPriceCal(menuItems)
+        saleController.saleOFWeekendOrWeekday(dateNumber, menuItems)
     }
 }

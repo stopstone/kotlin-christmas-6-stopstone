@@ -3,14 +3,16 @@ package christmas.validator
 import christmas.utils.Messages
 
 object ValidateOrder {
-    internal fun checkDuplicateMenu(input: String) {
-        val menuSet = mutableSetOf<String>()
-
-        input.split(",").forEach {
-            val menu = it.split("-").first()
-            if (!menuSet.add(menu)) {
-                throw IllegalArgumentException("${Messages.ERROR_MESSAGE} ${Messages.INVALID_ORDER_MESSAGE}")
-            }
+    internal fun checkDuplicateMenu(input: String): List<String> {
+        val menuItems = input.split(",")
+        val menuSet = menuItems.map { it.split("-").first() }.toSet()
+        if (menuSet.size < menuItems.size) {
+            throw IllegalArgumentException("${Messages.ERROR_MESSAGE} ${Messages.INVALID_ORDER_MESSAGE}")
         }
+        return menuItems
+    }
+
+    internal fun checkMinOrderMenu(menuItems: List<String>) {
+        require(menuItems.isEmpty()) {"${Messages.ERROR_MESSAGE} ${Messages.INVALID_ORDER_MESSAGE}"}
     }
 }

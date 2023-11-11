@@ -1,9 +1,9 @@
 package christmas.controller
 
 
+import christmas.model.createMenuItems
 import christmas.validator.ValidateDate.validate
 import christmas.validator.ValidateOrder.checkDuplicateMenu
-import christmas.validator.ValidateOrder.checkMinOrderMenu
 import christmas.view.InputView
 import christmas.view.OutputView
 
@@ -37,17 +37,12 @@ class PromotionController(private val inputView: InputView, private val outputVi
         while (true) {
             try {
                 val order = inputView.inputMenu()
-                val menuItems = checkDuplicateMenu(order)
-                checkMinOrderMenu(menuItems)
-                println(menuItems)
+                val items = checkDuplicateMenu(order)
+                val menuItems = createMenuItems(items)
                 break
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }
     }
-
-
-
-
 }

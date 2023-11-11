@@ -7,4 +7,8 @@ class InputView {
     fun inputDate(): String {
         return Console.readLine()
     }
+
+    fun inputMenu(): String {
+        return Console.readLine()
+    }
 }

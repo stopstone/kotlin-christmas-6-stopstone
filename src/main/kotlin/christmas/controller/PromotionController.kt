@@ -1,9 +1,8 @@
 package christmas.controller
 
 
-import christmas.utils.Messages
-import christmas.validator.ValidateDate
 import christmas.validator.ValidateDate.validate
+import christmas.validator.ValidateOrder.checkDuplicateMenu
 import christmas.view.InputView
 import christmas.view.OutputView
 
@@ -33,8 +32,18 @@ class PromotionController(private val inputView: InputView, private val outputVi
     }
 
     private fun orderMenu() {
-
+        outputView.printOrderToMenu()
+        while (true) {
+            try {
+                val order = inputView.inputMenu()
+ 
+                break
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
     }
+
 
 
 }

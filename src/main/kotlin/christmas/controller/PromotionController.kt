@@ -1,6 +1,8 @@
 package christmas.controller
 
 
+import christmas.model.Date
+import christmas.model.MenuItem
 import christmas.model.createMenuItems
 import christmas.validator.ValidateDate.validate
 import christmas.validator.ValidateOrder.checkDuplicateMenu
@@ -12,15 +14,20 @@ class PromotionController(private val inputView: InputView, private val outputVi
         outputView.printWelcomeRestaurant()
     }
 
+    private lateinit var date: Date
+    private lateinit var menuItems: List<MenuItem>
+
     fun promotionStart() {
-        readDateNumber()
+        //readDateNumber()
         orderMenu()
     }
 
     private fun readDateNumber() {
         outputView.inputVisitDateMessage()
+        var dateNumber: String
         while (true) {
-            val dateNumber = inputView.inputDate()
+            dateNumber = inputView.inputDate()
+            date = Date()
             try {
                 validate(dateNumber)
                 break
@@ -30,6 +37,7 @@ class PromotionController(private val inputView: InputView, private val outputVi
                 println(e.message)
             }
         }
+        date.calculateDay(dateNumber.toInt())
     }
 
     private fun orderMenu() {
@@ -38,7 +46,7 @@ class PromotionController(private val inputView: InputView, private val outputVi
             try {
                 val order = inputView.inputMenu()
                 val items = checkDuplicateMenu(order)
-                createMenuItems(items)
+                menuItems = createMenuItems(items)
                 break
             } catch (e: IllegalArgumentException) {
                 println(e.message)
@@ -46,5 +54,11 @@ class PromotionController(private val inputView: InputView, private val outputVi
                 println(e.message)
             }
         }
+
+    }
+
+    private fun discountPrice() {
+        val saleController = SaleController()
+        saleController.menuPriceCal(menuItems)
     }
 }

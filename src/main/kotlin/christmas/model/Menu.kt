@@ -23,13 +23,17 @@ enum class Menu(val itemName: String, val itemPrice: Int) {
     DRINK_CHAMPAGNE("샴페인", 25000)
 }
 
+fun createMenuItem(item: String): MenuItem {
+    val (menu, count) = item.split("-")
+    return MenuItem(findMenuItems(menu), count.toInt())
+}
+
 fun createMenuItems(items: List<String>): List<MenuItem> {
     val menuItems = mutableListOf<MenuItem>()
 
-    if(checkMinOrderMenu(items)) {
+    if (checkMinOrderMenu(items)) {
         for (item in items) {
-            val (menu, count) = item.split("-")
-            val menuItem = MenuItem(findMenuItems(menu), count.toInt())
+            val menuItem = createMenuItem(item)
             menuItems.add(menuItem)
         }
     }

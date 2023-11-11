@@ -13,6 +13,6 @@ object ValidateOrder {
     }
 
     internal fun checkMinOrderMenu(menuItems: List<String>) {
-        require(menuItems.isEmpty()) {"${Messages.ERROR_MESSAGE} ${Messages.INVALID_ORDER_MESSAGE}"}
+        require(menuItems.isNotEmpty()) {"${Messages.ERROR_MESSAGE} ${Messages.INVALID_ORDER_MESSAGE}"}
     }
 }

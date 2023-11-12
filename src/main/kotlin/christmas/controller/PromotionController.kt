@@ -80,11 +80,13 @@ class PromotionController(private val inputView: InputView, private val outputVi
         outputView.printPreviewEvent(dateNumber)
         outputView.printBlank()
 
+        val minOrderPrice = totalAmount >= 10000
+
         orderDetails()
         discountBeforePrice()
-        val champagne = presentEvent()
-        discountDetail()
-        totalDiscountPrice()
+        val champagne = presentEvent(minOrderPrice)
+        discountDetail(minOrderPrice)
+        totalDiscountPrice(minOrderPrice)
         discountAfterPrice(champagne)
         eventBadge()
     }
@@ -101,21 +103,36 @@ class PromotionController(private val inputView: InputView, private val outputVi
         outputView.printBlank()
     }
 
-    private fun presentEvent(): Int {
+    private fun presentEvent(minOrderPrice: Boolean): Int {
         val champagne = totalAmount / 120000
-        outputView.printPresentMenu(champagne)
+        outputView.printPresentMenu(champagne, minOrderPrice)
         outputView.printBlank()
         return champagne
     }
 
-    private fun discountDetail() {
+    private fun discountDetail(minOrderPrice: Boolean) {
         val items = Sale.entries.map { it.saleName }
-
-        outputView.printDiscountDetail(eachDiscount, items)
+        if (minOrderPrice) {
+            discountDetails(items)
+        }
+        if (!minOrderPrice) {
+            outputView.printDiscountDetail("없음")
+        }
         outputView.printBlank()
     }
 
-    private fun totalDiscountPrice() {
+    private fun discountDetails(items: List<String>) {
+        for (idx in eachDiscount.indices) {
+            if (eachDiscount[idx] != 0) {
+                outputView.printDiscountDetail("${items[idx]} ${eachDiscount[idx]}")
+            }
+        }
+    }
+
+    private fun totalDiscountPrice(minOrderPrice: Boolean) {
+        if (!minOrderPrice) {
+            totalDiscount = 0
+        }
         outputView.printTotalDiscountPrice(totalDiscount)
         outputView.printBlank()
     }

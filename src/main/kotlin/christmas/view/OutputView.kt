@@ -38,26 +38,27 @@ class OutputView {
     }
 
     fun beforeDiscountTotalAmount(totalAmount: Int) {
-        println("${totalAmount}원")
+        println("${totalAmount * -1}원")
     }
 
-    fun printPresentMenu(champagne: Int) {
+    fun printPresentMenu(champagne: Int, minOrderPrice: Boolean) {
         println("<증정 메뉴>")
-        println("샴페인 ${champagne}개")
+        if (minOrderPrice) {
+            println("샴페인 ${champagne}개")
+        }
+        if (!minOrderPrice) {
+            println("없음")
+        }
     }
 
-    fun printDiscountDetail(eachDiscount: MutableList<Int>, items: List<String>) {
+    fun printDiscountDetail(discountDetail: String) {
         println("<혜택 내역>")
-        for (idx in eachDiscount.indices) {
-            if (eachDiscount[idx] != 0) {
-                println("${items[idx]}: -${eachDiscount[idx]}")
-            }
-        }
+        println(discountDetail)
     }
 
     fun printTotalDiscountPrice(totalDiscount: Int) {
         println("<총혜택 금액>")
-        println("-${totalDiscount}원")
+        println("${totalDiscount * -1}원")
     }
 
     fun printDiscountAfterPrice(totalAmount: Int, totalDiscount: Int) {

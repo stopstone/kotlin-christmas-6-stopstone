@@ -37,12 +37,11 @@ fun createMenuItem(item: String): MenuItem {
 fun createMenuItems(items: List<String>): List<MenuItem> {
     val menuItems = mutableListOf<MenuItem>()
 
-    if (checkMinOrderMenu(items)) {
-        for (item in items) {
-            val menuItem = createMenuItem(item)
-            menuItems.add(menuItem)
-        }
+    for (item in items) {
+        val menuItem = createMenuItem(item)
+        menuItems.add(menuItem)
     }
+    checkMinOrderMenu(items)
     checkLimitOrderMenu(menuItems)
     return menuItems
 }

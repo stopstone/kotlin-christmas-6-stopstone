@@ -13,9 +13,8 @@ object ValidateOrder {
         return menuItems
     }
 
-    internal fun checkMinOrderMenu(menuItems: List<String>): Boolean {
+    internal fun checkMinOrderMenu(menuItems: List<String>) {
         require(menuItems.isNotEmpty()) {"${Messages.ERROR_MESSAGE} ${Messages.INVALID_ORDER_MESSAGE}"}
-        return true
     }
 
     internal fun checkLimitOrderMenu(menuItems: List<MenuItem>) {

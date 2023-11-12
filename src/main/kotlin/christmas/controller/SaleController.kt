@@ -21,13 +21,17 @@ class SaleController {
     }
 
     private fun saleOfChristmas(dateNumber: Int) {
-        val christmasSale = 1000
+        var christmasSale = 900
         val cumulativeAmount: Int
 
         if (dateNumber <= 25) {
             cumulativeAmount = dateNumber * 100
-            saleItems.add((christmasSale + cumulativeAmount) - 100)
+            christmasSale += cumulativeAmount
         }
+        if (dateNumber > 25) {
+            christmasSale = 0
+        }
+        saleItems.add(christmasSale)
     }
 
     private fun saleOfWeekendOrWeekday(dateNumber: Int, menuItems: List<MenuItem>) {

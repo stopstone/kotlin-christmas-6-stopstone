@@ -2,6 +2,7 @@ package christmas.model
 
 import christmas.utils.Messages.ERROR_MESSAGE
 import christmas.utils.Messages.INVALID_ORDER_MESSAGE
+import christmas.validator.ValidateOrder.checkLimitOrderMenu
 import christmas.validator.ValidateOrder.checkMinOrderMenu
 
 enum class Menu(val itemCategory: String, val itemName: String, val itemPrice: Int) {
@@ -40,6 +41,7 @@ fun createMenuItems(items: List<String>): List<MenuItem> {
             menuItems.add(menuItem)
         }
     }
+    checkLimitOrderMenu(menuItems)
     return menuItems
 }
 

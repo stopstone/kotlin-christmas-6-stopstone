@@ -1,5 +1,6 @@
 package christmas.validator
 
+import christmas.model.MenuItem
 import christmas.utils.Messages
 
 object ValidateOrder {
@@ -14,7 +15,12 @@ object ValidateOrder {
 
     internal fun checkMinOrderMenu(menuItems: List<String>): Boolean {
         require(menuItems.isNotEmpty()) {"${Messages.ERROR_MESSAGE} ${Messages.INVALID_ORDER_MESSAGE}"}
-
         return true
     }
+
+    internal fun checkLimitOrderMenu(menuItems: List<MenuItem>) {
+        val limit = menuItems.sumOf { it.count }
+        require(limit <= 20) {"${Messages.ERROR_MESSAGE} ${Messages.INVALID_ORDER_MESSAGE}"}
+    }
+
 }

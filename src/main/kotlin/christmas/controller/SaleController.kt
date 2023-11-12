@@ -25,8 +25,8 @@ class SaleController {
         val cumulativeAmount: Int
 
         if (dateNumber <= 25) {
-            cumulativeAmount = (dateNumber-100) * 100
-            saleItems.add(christmasSale + cumulativeAmount)
+            cumulativeAmount = dateNumber * 100
+            saleItems.add((christmasSale + cumulativeAmount) - 100)
         }
     }
 

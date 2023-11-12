@@ -17,8 +17,10 @@ class PromotionController(private val inputView: InputView, private val outputVi
 
     private lateinit var date: Date
     private lateinit var menuItems: List<MenuItem>
-    var totalAmount = 0
-    var totalDiscount = 0
+    private lateinit var saleController: SaleController
+    private var totalAmount = 0
+    private var totalDiscount = 0
+    private lateinit var eachDiscount: MutableList<Int>
 
     fun promotionStart() {
         val dateNumber = readDateNumber()

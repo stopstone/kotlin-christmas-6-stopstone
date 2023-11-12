@@ -63,17 +63,17 @@ class PromotionController(private val inputView: InputView, private val outputVi
 
     }
 
-    private fun discountPrice(dateNumber: Int, menuItems: List<MenuItem>): Int {
-        val saleController = SaleController()
-        val eachDiscount = saleController.saleStart(dateNumber, menuItems)
+    private fun discountPrice(dateNumber: Int, menuItems: List<MenuItem>) {
+        saleController = SaleController()
+        eachDiscount = saleController.saleStart(dateNumber, menuItems)
+        totalAmount = saleController.totalOrderAmount(menuItems)
         totalDiscount = saleController.totalDiscountAmount(eachDiscount)
 
-        return totalDiscount
     }
 
-    private fun choiceBadge(totalDiscount: Int) {
+    private fun choiceBadge(totalDiscount: Int): String {
         val badge = Badge()
-        badge.selectBadge(totalDiscount)
+        return badge.selectBadge(totalDiscount)
     }
 
     private fun printResult(dateNumber: Int) {

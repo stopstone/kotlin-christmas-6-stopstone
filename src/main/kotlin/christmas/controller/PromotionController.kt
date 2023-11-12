@@ -25,6 +25,7 @@ class PromotionController(private val inputView: InputView, private val outputVi
         orderMenu()
         discountPrice(dateNumber, menuItems)
         choiceBadge(totalDiscount)
+        printResult(dateNumber)
 
     }
 
@@ -74,5 +75,9 @@ class PromotionController(private val inputView: InputView, private val outputVi
     private fun choiceBadge(totalDiscount: Int) {
         val badge = Badge()
         badge.selectBadge(totalDiscount)
+    }
+
+    private fun printResult(dateNumber: Int) {
+        outputView.printPreviewEvent(dateNumber)
     }
 }

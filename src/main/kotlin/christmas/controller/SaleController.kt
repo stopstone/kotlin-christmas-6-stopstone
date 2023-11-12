@@ -3,14 +3,14 @@ package christmas.controller
 import christmas.model.*
 
 class SaleController {
+    private var saleItems = mutableListOf<Int>()
+    fun saleStart(dateNumber: Int, menuItems: List<MenuItem>): MutableList<Int> {
+        saleOfChristmas(dateNumber)
+        saleOfWeekendOrWeekday(dateNumber, menuItems)
+        saleOfSpecial(dateNumber)
+        presentEvent(menuItems.toMutableList())
 
-    fun saleStart(dateNumber: Int, menuItems: List<MenuItem>): List<Int> {
-        val weekDiscount = saleOFWeekendOrWeekday(dateNumber, menuItems)
-        val christmasDiscount = saleOfChristmas(dateNumber)
-        val specialDiscount = saleOfSpecial(dateNumber, menuItems)
-        val presentDiscount = presentEvent(menuItems.toMutableList())
-
-        return listOf(weekDiscount, christmasDiscount, specialDiscount, presentDiscount)
+        return saleItems
     }
     fun totalOrderAmount(menuItems: List<MenuItem>): Int {
         return menuItems.sumOf { it.menu.itemPrice * it.count }

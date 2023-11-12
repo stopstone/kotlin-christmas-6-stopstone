@@ -1,6 +1,7 @@
 package christmas.controller
 
 
+import christmas.model.Badge
 import christmas.model.Date
 import christmas.model.MenuItem
 import christmas.model.createMenuItems
@@ -16,10 +17,15 @@ class PromotionController(private val inputView: InputView, private val outputVi
 
     private lateinit var date: Date
     private lateinit var menuItems: List<MenuItem>
+    var totalAmount = 0
+    var totalDiscount = 0
+
     fun promotionStart() {
         val dateNumber = readDateNumber()
         orderMenu()
-        discountPrice(dateNumber)
+        discountPrice(dateNumber, menuItems)
+        choiceBadge(totalDiscount)
+
     }
 
     private fun readDateNumber(): Int {
@@ -57,8 +63,16 @@ class PromotionController(private val inputView: InputView, private val outputVi
 
     }
 
-    private fun discountPrice(dateNumber: Int) {
+    private fun discountPrice(dateNumber: Int, menuItems: List<MenuItem>): Int {
         val saleController = SaleController()
-        saleController.saleRun(dateNumber, menuItems)
+        val eachDiscount = saleController.saleStart(dateNumber, menuItems)
+        totalDiscount = saleController.totalDiscountAmount(eachDiscount)
+
+        return totalDiscount
+    }
+
+    private fun choiceBadge(totalDiscount: Int) {
+        val badge = Badge()
+        badge.selectBadge(totalDiscount)
     }
 }

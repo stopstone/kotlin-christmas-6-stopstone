@@ -21,4 +21,13 @@ class OutputView {
     fun printPreviewEvent(dateNumber: Int) {
         println(PREVIEW_EVENT_MESSAGE.format(dateNumber))
     }
+
+    fun printOrderMenuMessage() {
+        println("<주문 메뉴>")
+    }
+
+    fun printBeforeTotalAmount() {
+        println("<할인 전 총주문 금액>")
+    }
+    fun printBlank() = println()
 }

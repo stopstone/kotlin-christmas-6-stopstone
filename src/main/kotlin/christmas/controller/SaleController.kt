@@ -38,14 +38,14 @@ class SaleController {
         return christmasSale + cumulativeAmount
     }
 
-    private fun saleOfWeekend(menuItems: List<MenuItem>) {
+    private fun saleOfWeekend(menuItems: List<MenuItem>): Int {
         val mainSale = menuItems.filter { it.menu.itemCategory == "메인" }
-        return mainSale.forEach { it.count * 2023 }
+        return mainSale.map { it.count * 2023 }.first()
     }
 
-    private fun saleOfWeekday(menuItems: List<MenuItem>) {
+    private fun saleOfWeekday(menuItems: List<MenuItem>): Int {
         val dessertSale = menuItems.filter { it.menu.itemCategory == "디저트" }
-        return dessertSale.forEach { it.count * 2023 }
+        return dessertSale.map { it.count * 2023 }.first()
     }
 
     private fun saleOfSpecial(dateNumber: Int, menuItems: List<MenuItem>): Int {

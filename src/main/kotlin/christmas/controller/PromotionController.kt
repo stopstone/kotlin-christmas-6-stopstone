@@ -82,8 +82,11 @@ class PromotionController(private val inputView: InputView, private val outputVi
 
         orderDetails()
         discountBeforePrice()
-        presentEvent()
+        val champagne = presentEvent()
         discountDetail()
+        totalDiscountPrice()
+        discountAfterPrice(champagne)
+        eventBadge()
     }
 
     private fun orderDetails() {
@@ -112,4 +115,21 @@ class PromotionController(private val inputView: InputView, private val outputVi
         outputView.printBlank()
     }
 
+    private fun totalDiscountPrice() {
+        outputView.printTotalDiscountPrice(totalDiscount)
+        outputView.printBlank()
+    }
+
+    private fun discountAfterPrice(champagne: Int) {
+        val present = champagne * 25000
+        totalAmount += present
+        outputView.printDiscountAfterPrice(totalAmount, totalDiscount)
+        outputView.printBlank()
+    }
+
+    private fun eventBadge() {
+        val badgeKind = choiceBadge(totalDiscount)
+        outputView.printEventBadge(badgeKind)
+        outputView.printBlank()
+    }
 }

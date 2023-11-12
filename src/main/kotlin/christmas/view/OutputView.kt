@@ -55,5 +55,20 @@ class OutputView {
         }
     }
 
+    fun printTotalDiscountPrice(totalDiscount: Int) {
+        println("<총혜택 금액>")
+        println("-${totalDiscount}원")
+    }
+
+    fun printDiscountAfterPrice(totalAmount: Int, totalDiscount: Int) {
+        println("<할인 후 예상 결제 금액>")
+        println(totalAmount-totalDiscount)
+    }
+
+    fun printEventBadge(badgeKind: String) {
+        println("<12월 이벤트 배지>")
+        println()
+    }
+
     fun printBlank() = println()
 }

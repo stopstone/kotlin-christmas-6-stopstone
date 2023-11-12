@@ -27,6 +27,8 @@ fun createMenuItem(item: String): MenuItem {
     try {
         val (menu, count) = item.split("-")
         return MenuItem(findMenuItems(menu), count.toInt())
+    } catch (e: IllegalArgumentException) {
+        throw IllegalArgumentException("$ERROR_MESSAGE $INVALID_ORDER_MESSAGE")
     } catch (e: IndexOutOfBoundsException) {
         throw IndexOutOfBoundsException("$ERROR_MESSAGE $INVALID_ORDER_MESSAGE")
     }

@@ -25,8 +25,8 @@ class SaleController {
         var day = date.calculateDay(dateNumber)
 
         when (day) {
-            0, 1, 2, 3, 4 -> day = saleOfWeekday(menuItems)!!
-            5, 6 -> day = saleOfWeekend(menuItems)!!
+            0, 1, 2, 3, 4 -> day = saleOfWeekday(menuItems)
+            5, 6 -> day = saleOfWeekend(menuItems)
         }
         return day
     }
@@ -40,14 +40,24 @@ class SaleController {
         return christmasSale + cumulativeAmount
     }
 
-    private fun saleOfWeekend(menuItems: List<MenuItem>): Int? {
+    private fun saleOfWeekend(menuItems: List<MenuItem>): Int {
         val mainSale = menuItems.filter { it.menu.itemCategory == "메인" }
-        return mainSale.map { it.count * 2023 }.getOrNull(0)
+        val resultMainSale = mainSale.map { it.count * 2023 }
+
+        if (resultMainSale.isNotEmpty()) {
+            return resultMainSale.first()
+        }
+        return 0
     }
 
-    private fun saleOfWeekday(menuItems: List<MenuItem>): Int? {
+    private fun saleOfWeekday(menuItems: List<MenuItem>): Int {
         val dessertSale = menuItems.filter { it.menu.itemCategory == "디저트" }
-        return dessertSale.map { it.count * 2023 }.getOrNull(0)
+        val resultDessertSale = dessertSale.map { it.count * 2023 }
+
+        if (resultDessertSale.isNotEmpty()) {
+            return resultDessertSale.first()
+        }
+        return 0
     }
 
     private fun saleOfSpecial(dateNumber: Int, menuItems: List<MenuItem>): Int {

@@ -41,8 +41,18 @@ class OutputView {
         println("${totalAmount}원")
     }
 
-    fun printPresentMenu() {
+    fun printPresentMenu(champagne: Int) {
+        println("<증정 메뉴>")
+        println("${champagne}개")
+    }
 
+    fun printDiscountDetail(eachDiscount: MutableList<Int>, items: List<String>) {
+        println("<혜택 내역>")
+        for (idx in eachDiscount.indices) {
+            if (eachDiscount[idx] != 0) {
+                println("${items[idx]}: -${eachDiscount[idx]}")
+            }
+        }
     }
 
     fun printBlank() = println()

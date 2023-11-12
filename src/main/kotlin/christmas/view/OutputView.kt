@@ -43,7 +43,7 @@ class OutputView {
 
     fun printPresentMenu(champagne: Int) {
         println("<증정 메뉴>")
-        println("${champagne}개")
+        println("샴페인 ${champagne}개")
     }
 
     fun printDiscountDetail(eachDiscount: MutableList<Int>, items: List<String>) {

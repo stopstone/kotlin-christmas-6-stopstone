@@ -16,7 +16,7 @@ class SaleController {
         return menuItems.sumOf { it.menu.itemPrice * it.count }
     }
 
-    fun totalDiscountAmount(totalDiscount: List<Int>): Int {
+    fun totalDiscountAmount(totalDiscount: MutableList<Int>): Int {
         return totalDiscount.sum()
     }
 
@@ -25,52 +25,49 @@ class SaleController {
         var day = date.calculateDay(dateNumber)
 
         when (day) {
-            0, 1, 2, 3, 4 -> day = saleOfWeekday(menuItems)
-            5, 6 -> day = saleOfWeekend(menuItems)
+            0, 1, 2, 3, 4 -> {
+                saleOfWeekday(menuItems)
+                saleItems.add(0)
+            }
+            5, 6 -> {
+                saleItems.add(0)
+                saleOfWeekend(menuItems)
+            }
         }
-        return day
     }
 
-    private fun saleOfChristmas(dateNumber: Int): Int {
-        val christmasSale = 1000
-        var cumulativeAmount = 0
-        if (dateNumber <= 25) {
-            cumulativeAmount = dateNumber * 100
-        }
-        return christmasSale + cumulativeAmount
-    }
 
-    private fun saleOfWeekend(menuItems: List<MenuItem>): Int {
+    private fun saleOfWeekend(menuItems: List<MenuItem>) {
         val mainSale = menuItems.filter { it.menu.itemCategory == "메인" }
         val resultMainSale = mainSale.map { it.count * 2023 }
 
         if (resultMainSale.isNotEmpty()) {
-            return resultMainSale.first()
+            saleItems.add(resultMainSale.first())
         }
         return 0
     }
 
-    private fun saleOfWeekday(menuItems: List<MenuItem>): Int {
+    private fun saleOfWeekday(menuItems: List<MenuItem>) {
         val dessertSale = menuItems.filter { it.menu.itemCategory == "디저트" }
         val resultDessertSale = dessertSale.map { it.count * 2023 }
 
         if (resultDessertSale.isNotEmpty()) {
-            return resultDessertSale.first()
+            saleItems.add(resultDessertSale.first())
         }
         return 0
     }
 
-    private fun saleOfSpecial(dateNumber: Int, menuItems: List<MenuItem>): Int {
+    private fun saleOfSpecial(dateNumber: Int) {
         val starDays = listOf(3, 10, 17, 24, 25, 31)
         val totalAmount = menuItems.sumOf { it.menu.itemPrice * it.count }
 
         if (dateNumber in starDays) {
-            return (totalAmount - 1_000)
+            saleItems.add(1000)
         }
         return totalAmount
     }
 
-    private fun presentEvent(menuItems: MutableList<MenuItem>): Int {
+    private fun presentEvent(menuItems: MutableList<MenuItem>) {
         val totalAmount = menuItems.sumOf { it.menu.itemPrice * it.count }
         val remainingAmount = totalAmount % 120000
         saleOfPresent(remainingAmount)
@@ -82,7 +79,7 @@ class SaleController {
         return saleOfPresent(remainingAmount)
     }
 
-    private fun saleOfPresent(remainingAmount: Int): Int {
-        return remainingAmount * 120000
+    private fun saleOfPresent(remainingAmount: Int) {
+        saleItems.add(remainingAmount * 25000)
     }
 }

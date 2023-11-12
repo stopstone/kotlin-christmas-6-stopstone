@@ -54,7 +54,6 @@ class SaleController {
         if (resultMainSale.isNotEmpty()) {
             saleItems.add(resultMainSale.first())
         }
-        return 0
     }
 
     private fun saleOfWeekday(menuItems: List<MenuItem>) {
@@ -64,17 +63,14 @@ class SaleController {
         if (resultDessertSale.isNotEmpty()) {
             saleItems.add(resultDessertSale.first())
         }
-        return 0
     }
 
     private fun saleOfSpecial(dateNumber: Int) {
         val starDays = listOf(3, 10, 17, 24, 25, 31)
-        val totalAmount = menuItems.sumOf { it.menu.itemPrice * it.count }
 
         if (dateNumber in starDays) {
             saleItems.add(1000)
         }
-        return totalAmount
     }
 
     private fun presentEvent(menuItems: MutableList<MenuItem>) {

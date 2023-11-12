@@ -1,25 +1,29 @@
 package christmas.validator
 
 import christmas.model.MenuItem
-import christmas.utils.Messages
+import christmas.utils.Constants.ITEMS_DELIMITER
+import christmas.utils.Constants.MENU_DELIMITER
+import christmas.utils.Constants.ORDER_LIMIT
+import christmas.utils.Messages.ERROR_MESSAGE
+import christmas.utils.Messages.INVALID_ORDER_MESSAGE
 
 object ValidateOrder {
     internal fun checkDuplicateMenu(input: String): List<String> {
-        val menuItems = input.split(",")
-        val menuSet = menuItems.map { it.split("-").first() }.toSet()
+        val menuItems = input.split(MENU_DELIMITER)
+        val menuSet = menuItems.map { it.split(ITEMS_DELIMITER).first() }.toSet()
         if (menuSet.size < menuItems.size) {
-            throw IllegalArgumentException("${Messages.ERROR_MESSAGE} ${Messages.INVALID_ORDER_MESSAGE}")
+            throw IllegalArgumentException("$ERROR_MESSAGE $INVALID_ORDER_MESSAGE")
         }
         return menuItems
     }
 
     internal fun checkMinOrderMenu(menuItems: List<String>) {
-        require(menuItems.isNotEmpty()) {"${Messages.ERROR_MESSAGE} ${Messages.INVALID_ORDER_MESSAGE}"}
+        require(menuItems.isNotEmpty()) {"$ERROR_MESSAGE $INVALID_ORDER_MESSAGE"}
     }
 
     internal fun checkLimitOrderMenu(menuItems: List<MenuItem>) {
         val limit = menuItems.sumOf { it.count }
-        require(limit <= 20) {"${Messages.ERROR_MESSAGE} ${Messages.INVALID_ORDER_MESSAGE}"}
+        require(limit <= ORDER_LIMIT) {"$ERROR_MESSAGE $INVALID_ORDER_MESSAGE"}
     }
 
 }

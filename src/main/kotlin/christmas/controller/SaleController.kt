@@ -4,12 +4,13 @@ import christmas.model.*
 
 class SaleController {
 
-    fun saleStart(dateNumber: Int, menuItems: List<MenuItem>) {
+    fun saleStart(dateNumber: Int, menuItems: List<MenuItem>): List<Int> {
         val weekDiscount = saleOFWeekendOrWeekday(dateNumber, menuItems)
         val christmasDiscount = saleOfChristmas(dateNumber)
         val specialDiscount = saleOfSpecial(dateNumber, menuItems)
         val presentDiscount = presentEvent(menuItems.toMutableList())
 
+        return listOf(weekDiscount, christmasDiscount, specialDiscount, presentDiscount)
     }
     fun totalOrderAmount(menuItems: List<MenuItem>): Int {
         return menuItems.sumOf { it.menu.itemPrice * it.count }
@@ -19,14 +20,15 @@ class SaleController {
         return totalDiscount.sum()
     }
 
-    private fun saleOFWeekendOrWeekday(dateNumber: Int, menuItems: List<MenuItem>) {
+    private fun saleOFWeekendOrWeekday(dateNumber: Int, menuItems: List<MenuItem>): Int {
         val date = Date()
         var day = date.calculateDay(dateNumber)
 
         when (day) {
-            0, 1, 2, 3, 4 -> saleOfWeekday(menuItems)
-            5, 6 -> saleOfWeekend(menuItems)
+            0, 1, 2, 3, 4 -> day = saleOfWeekday(menuItems)!!
+            5, 6 -> day = saleOfWeekend(menuItems)!!
         }
+        return day
     }
 
     private fun saleOfChristmas(dateNumber: Int): Int {
@@ -38,14 +40,14 @@ class SaleController {
         return christmasSale + cumulativeAmount
     }
 
-    private fun saleOfWeekend(menuItems: List<MenuItem>): Int {
+    private fun saleOfWeekend(menuItems: List<MenuItem>): Int? {
         val mainSale = menuItems.filter { it.menu.itemCategory == "메인" }
-        return mainSale.map { it.count * 2023 }.first()
+        return mainSale.map { it.count * 2023 }.getOrNull(0)
     }
 
-    private fun saleOfWeekday(menuItems: List<MenuItem>): Int {
+    private fun saleOfWeekday(menuItems: List<MenuItem>): Int? {
         val dessertSale = menuItems.filter { it.menu.itemCategory == "디저트" }
-        return dessertSale.map { it.count * 2023 }.first()
+        return dessertSale.map { it.count * 2023 }.getOrNull(0)
     }
 
     private fun saleOfSpecial(dateNumber: Int, menuItems: List<MenuItem>): Int {

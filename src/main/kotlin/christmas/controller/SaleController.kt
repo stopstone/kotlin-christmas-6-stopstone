@@ -77,12 +77,6 @@ class SaleController {
         val totalAmount = menuItems.sumOf { it.menu.itemPrice * it.count }
         val remainingAmount = totalAmount / 120000
         saleOfPresent(remainingAmount)
-
-        if (totalAmount >= 120000) {
-            val gift = MenuItem(Menu.DRINK_CHAMPAGNE, remainingAmount)
-            menuItems.add(gift)
-        }
-        return saleOfPresent(remainingAmount)
     }
 
     private fun saleOfPresent(remainingAmount: Int) {

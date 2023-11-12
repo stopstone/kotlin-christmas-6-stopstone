@@ -1,5 +1,6 @@
 package christmas.view
 
+import christmas.model.MenuItem
 import christmas.utils.Messages.INPUT_VISIT_DATE_MESSAGE
 import christmas.utils.Messages.ORDER_MENU_MESSAGE
 import christmas.utils.Messages.PREVIEW_EVENT_MESSAGE
@@ -16,6 +17,12 @@ class OutputView {
 
     fun printOrderToMenu() {
         println(ORDER_MENU_MESSAGE)
+    }
+
+    fun printOrderDetail(menuItems: List<MenuItem>) {
+        for (item in menuItems) {
+            println("${item.menu.itemName} ${item.count}개")
+        }
     }
 
     fun printPreviewEvent(dateNumber: Int) {

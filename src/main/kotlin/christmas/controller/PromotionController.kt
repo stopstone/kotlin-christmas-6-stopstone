@@ -78,5 +78,16 @@ class PromotionController(private val inputView: InputView, private val outputVi
 
     private fun printResult(dateNumber: Int) {
         outputView.printPreviewEvent(dateNumber)
+        outputView.printBlank()
+
+        orderDetails()
+
     }
+
+    private fun orderDetails() {
+        outputView.printOrderMenuMessage()
+        outputView.printOrderDetail(menuItems)
+        outputView.printBlank()
+    }
+
 }

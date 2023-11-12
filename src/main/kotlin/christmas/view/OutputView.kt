@@ -33,8 +33,17 @@ class OutputView {
         println("<주문 메뉴>")
     }
 
-    fun printBeforeTotalAmount() {
+    fun printBeforeAmountMessage() {
         println("<할인 전 총주문 금액>")
     }
+
+    fun beforeDiscountTotalAmount(totalAmount: Int) {
+        println("${totalAmount}원")
+    }
+
+    fun printPresentMenu() {
+
+    }
+
     fun printBlank() = println()
 }

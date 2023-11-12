@@ -81,13 +81,28 @@ class PromotionController(private val inputView: InputView, private val outputVi
         outputView.printBlank()
 
         orderDetails()
-
+        discountBeforePrice()
+        presentEvent()
     }
 
     private fun orderDetails() {
         outputView.printOrderMenuMessage()
         outputView.printOrderDetail(menuItems)
         outputView.printBlank()
+    }
+
+    private fun discountBeforePrice() {
+        outputView.printBeforeAmountMessage()
+        outputView.beforeDiscountTotalAmount(totalAmount)
+        outputView.printBlank()
+    }
+
+    private fun presentEvent(): Int {
+        val champagne = totalAmount / 120000
+
+
+        outputView.printBlank()
+        return champagne
     }
 
 }

@@ -11,7 +11,7 @@ import christmas.view.OutputView
 class MenuController(
     private val menuItems: List<MenuItem>,
     private val outputView: OutputView,
-    private val date: Date
+    date: Date
 ) {
 
     private lateinit var totalAmount: TotalAmount

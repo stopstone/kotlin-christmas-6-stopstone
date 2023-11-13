@@ -20,9 +20,11 @@ import christmas.utils.Constants.WEEK_DISCOUNT
 class SaleController {
     private var saleItems = mutableListOf<Int>()
     fun saleStart(dateNumber: Int, menuItems: List<MenuItem>): MutableList<Int> {
-        saleOfChristmas(dateNumber)
-        saleOfWeekendOrWeekday(dateNumber, menuItems)
-        saleOfSpecial(dateNumber)
+        val date = Date(dateNumber.toString())
+
+        saleOfChristmas(date)
+        saleOfWeekendOrWeekday(date, menuItems)
+        saleOfSpecial(date)
         presentEvent(menuItems.toMutableList())
 
         return saleItems
@@ -35,9 +37,10 @@ class SaleController {
         return totalDiscount.sum()
     }
 
-    private fun saleOfChristmas(dateNumber: Int) {
+    private fun saleOfChristmas(date: Date) {
         var christmasSale = DISCOUNT_START
         val cumulativeAmount: Int
+        val dateNumber = date.getDate()
 
         if (dateNumber <= CHRISTMAS_DISCOUNT) {
             cumulativeAmount = dateNumber * DISCOUNT_PLUS
@@ -49,10 +52,9 @@ class SaleController {
         saleItems.add(christmasSale)
     }
 
-    private fun saleOfWeekendOrWeekday(dateNumber: Int, menuItems: List<MenuItem>) {
-        val date = Date()
-        var day = date.calculateDay(dateNumber)
-
+    private fun saleOfWeekendOrWeekday(date: Date, menuItems: List<MenuItem>) {
+        val dateNumber = date.getDate()
+        val day = date.calculateDay(dateNumber)
         when (day) {
             SUN, MON, TUE, WED, THU -> {
                 saleOfWeekday(menuItems)
@@ -84,8 +86,9 @@ class SaleController {
         }
     }
 
-    private fun saleOfSpecial(dateNumber: Int) {
+    private fun saleOfSpecial(date: Date) {
         val starDays = listOf(3, 10, 17, 24, 25, 31)
+        val dateNumber = date.getDate()
 
         if (dateNumber in starDays) {
             saleItems.add(SPECIAL_DISCOUNT)

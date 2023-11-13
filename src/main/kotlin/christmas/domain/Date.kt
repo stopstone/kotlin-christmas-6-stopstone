@@ -1,4 +1,4 @@
-package christmas.model
+package christmas.domain
 
 import christmas.utils.Constants
 import christmas.utils.Messages

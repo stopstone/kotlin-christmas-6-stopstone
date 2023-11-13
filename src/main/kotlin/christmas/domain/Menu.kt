@@ -1,5 +1,6 @@
-package christmas.model
+package christmas.domain
 
+import christmas.model.MenuItem
 import christmas.utils.Constants.APPETIZER
 import christmas.utils.Constants.BBQ
 import christmas.utils.Constants.BBQ_COST

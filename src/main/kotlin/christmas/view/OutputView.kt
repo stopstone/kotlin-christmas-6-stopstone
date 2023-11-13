@@ -17,6 +17,7 @@ import christmas.utils.Messages.PRESENT_MENU
 import christmas.utils.Messages.PREVIEW_EVENT_MESSAGE
 import christmas.utils.Messages.TOTAL_DISCOUNT_PRICE
 import christmas.utils.Messages.WELCOME_RESTAURANT
+import christmas.utils.StringFormatter.formatNumberWithComma
 
 class OutputView {
     fun printWelcomeRestaurant() {
@@ -40,7 +41,6 @@ class OutputView {
 
     fun printPreviewEvent(dateNumber: Int) {
         println(PREVIEW_EVENT_MESSAGE.format(dateNumber))
-        printBlank()
     }
 
     fun printOrderMenuMessage() {
@@ -52,7 +52,7 @@ class OutputView {
     }
 
     fun beforeDiscountTotalAmount(totalAmount: Int) {
-        println("${totalAmount}${WON}")
+        println("${formatNumberWithComma(totalAmount)}${WON}")
         printBlank()
     }
 
@@ -75,13 +75,13 @@ class OutputView {
 
     fun printTotalDiscountPrice(totalDiscount: Int) {
         println(TOTAL_DISCOUNT_PRICE)
-        println("${totalDiscount * MINUS}${WON}")
+        println("${formatNumberWithComma(totalDiscount * MINUS)}${WON}")
         printBlank()
     }
 
     fun printDiscountAfterPrice(totalAmount: Int, totalDiscount: Int) {
         println(AFTER_DISCOUNT_PRICE)
-        println(totalAmount-totalDiscount)
+        println("${formatNumberWithComma(totalAmount-totalDiscount)}$WON")
         printBlank()
     }
 

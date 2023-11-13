@@ -4,6 +4,8 @@ package christmas.controller
 import christmas.model.*
 import christmas.utils.Constants
 import christmas.utils.Constants.MIN_ORDER_COST
+import christmas.utils.Constants.WON
+import christmas.utils.StringFormatter.formatNumberWithComma
 import christmas.validator.ValidateDate.validate
 import christmas.validator.ValidateOrder.checkDuplicateMenu
 import christmas.view.InputView
@@ -116,7 +118,7 @@ class PromotionController(private val inputView: InputView, private val outputVi
     private fun discountDetails(items: List<String>) {
         for (idx in eachDiscount.indices) {
             if (eachDiscount[idx] != 0) {
-                outputView.printDiscountDetail("${items[idx]} ${eachDiscount[idx]}")
+                outputView.printDiscountDetail("${items[idx]} ${formatNumberWithComma(eachDiscount[idx])}$WON")
             }
         }
     }

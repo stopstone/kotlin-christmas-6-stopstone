@@ -33,8 +33,8 @@ class OutputView {
     }
 
     fun printOrderDetail(menuItems: List<MenuItem>) {
-        for (item in menuItems) {
-            println("${item.menu.itemName} ${item.count}${SOME_COUNT}")
+        menuItems.forEach { item ->
+            println("${item.menu.itemName} ${item.count}$SOME_COUNT")
         }
         printBlank()
     }

@@ -1,5 +1,7 @@
 package christmas.controller
 
+import christmas.domain.Date
+import christmas.domain.TotalAmount
 import christmas.model.*
 import christmas.utils.Constants.CHRISTMAS_DISCOUNT
 import christmas.utils.Constants.DISCOUNT_PLUS

@@ -27,7 +27,7 @@ class SaleController {
         saleOfChristmas(date)
         saleOfWeekendOrWeekday(date, menuItems)
         saleOfSpecial(date)
-        presentEvent(menuItems.toMutableList())
+        saleOfPresent(menuItems)
 
         return saleItems
     }
@@ -97,12 +97,9 @@ class SaleController {
         }
     }
 
-    private fun presentEvent(menuItems: MutableList<MenuItem>) {
-        val remainingAmount = totalOrderAmount(menuItems) / PRESENT_AMOUNT
-        saleOfPresent(remainingAmount)
-    }
-
-    private fun saleOfPresent(remainingAmount: Int) {
-        saleItems.add(remainingAmount * PRESENT_DISCOUNT)
+    private fun saleOfPresent(menuItems: List<MenuItem>) {
+        val totalAmount = TotalAmount(menuItems)
+        val champagne = totalAmount.getTotalAmount() / PRESENT_AMOUNT
+        saleItems.add(SaleItem(Sale.PRESENT_EVENT, champagne * PRESENT_DISCOUNT))
     }
 }

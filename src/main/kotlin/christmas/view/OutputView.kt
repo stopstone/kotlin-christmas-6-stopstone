@@ -1,9 +1,21 @@
 package christmas.view
 
 import christmas.model.MenuItem
+import christmas.utils.Constants.CHAMPAGNE
+import christmas.utils.Constants.MINUS
+import christmas.utils.Constants.NOTHING
+import christmas.utils.Constants.SOME_COUNT
+import christmas.utils.Constants.WON
+import christmas.utils.Messages.AFTER_DISCOUNT_PRICE
+import christmas.utils.Messages.BEFORE_DISCOUNT_AMOUNT
+import christmas.utils.Messages.DECEMBER_EVENT_BADGE
+import christmas.utils.Messages.DISCOUNT_DETAIL
 import christmas.utils.Messages.INPUT_VISIT_DATE_MESSAGE
+import christmas.utils.Messages.ORDER_MENU
 import christmas.utils.Messages.ORDER_MENU_MESSAGE
+import christmas.utils.Messages.PRESENT_MENU
 import christmas.utils.Messages.PREVIEW_EVENT_MESSAGE
+import christmas.utils.Messages.TOTAL_DISCOUNT_PRICE
 import christmas.utils.Messages.WELCOME_RESTAURANT
 
 class OutputView {
@@ -21,7 +33,7 @@ class OutputView {
 
     fun printOrderDetail(menuItems: List<MenuItem>) {
         for (item in menuItems) {
-            println("${item.menu.itemName} ${item.count}개")
+            println("${item.menu.itemName} ${item.count}${SOME_COUNT}")
         }
     }
 
@@ -30,44 +42,44 @@ class OutputView {
     }
 
     fun printOrderMenuMessage() {
-        println("<주문 메뉴>")
+        println(ORDER_MENU)
     }
 
     fun printBeforeAmountMessage() {
-        println("<할인 전 총주문 금액>")
+        println(BEFORE_DISCOUNT_AMOUNT)
     }
 
     fun beforeDiscountTotalAmount(totalAmount: Int) {
-        println("${totalAmount * -1}원")
+        println("${totalAmount * MINUS}${WON}")
     }
 
     fun printPresentMenu(champagne: Int, minOrderPrice: Boolean) {
-        println("<증정 메뉴>")
+        println(PRESENT_MENU)
         if (minOrderPrice) {
-            println("샴페인 ${champagne}개")
+            println("$CHAMPAGNE ${champagne}${SOME_COUNT}")
         }
         if (!minOrderPrice) {
-            println("없음")
+            println(NOTHING)
         }
     }
 
     fun printDiscountDetail(discountDetail: String) {
-        println("<혜택 내역>")
+        println(DISCOUNT_DETAIL)
         println(discountDetail)
     }
 
     fun printTotalDiscountPrice(totalDiscount: Int) {
-        println("<총혜택 금액>")
-        println("${totalDiscount * -1}원")
+        println(TOTAL_DISCOUNT_PRICE)
+        println("${totalDiscount * MINUS}${WON}")
     }
 
     fun printDiscountAfterPrice(totalAmount: Int, totalDiscount: Int) {
-        println("<할인 후 예상 결제 금액>")
+        println(AFTER_DISCOUNT_PRICE)
         println(totalAmount-totalDiscount)
     }
 
     fun printEventBadge(badgeKind: String) {
-        println("<12월 이벤트 배지>")
+        println(DECEMBER_EVENT_BADGE)
         println(badgeKind)
     }
 

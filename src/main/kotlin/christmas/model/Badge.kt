@@ -1,16 +1,24 @@
 package christmas.model
 
+import christmas.utils.Constants.BADGE_SANTA
+import christmas.utils.Constants.BADGE_STAR
+import christmas.utils.Constants.BADGE_TREE
+import christmas.utils.Constants.NOTHING
+import christmas.utils.Constants.SANTA_DISCOUNT
+import christmas.utils.Constants.STAR_DISCOUNT
+import christmas.utils.Constants.TREE_DISCOUNT
+
 class Badge {
     fun selectBadge(totalAmount: Int): String {
-        var badge = "없음"
-        if (5000 <= totalAmount) {
-            badge = "별"
+        var badge = NOTHING
+        if (STAR_DISCOUNT <= totalAmount) {
+            badge = BADGE_STAR
         }
-        if (10000 <= totalAmount) {
-            badge = "트리"
+        if (TREE_DISCOUNT <= totalAmount) {
+            badge = BADGE_TREE
         }
-        if (20000 <= totalAmount) {
-            badge = "산타"
+        if (SANTA_DISCOUNT <= totalAmount) {
+            badge = BADGE_SANTA
         }
         return badge
     }

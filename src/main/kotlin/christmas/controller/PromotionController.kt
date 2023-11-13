@@ -2,6 +2,10 @@ package christmas.controller
 
 
 import christmas.model.*
+import christmas.utils.Constants.CHAMPAGNE_COST
+import christmas.utils.Constants.MIN_ORDER_COST
+import christmas.utils.Constants.NOTHING
+import christmas.utils.Constants.PRESENT_AMOUNT
 import christmas.validator.ValidateDate.validate
 import christmas.validator.ValidateOrder.checkDuplicateMenu
 import christmas.view.InputView
@@ -80,7 +84,7 @@ class PromotionController(private val inputView: InputView, private val outputVi
         outputView.printPreviewEvent(dateNumber)
         outputView.printBlank()
 
-        val minOrderPrice = totalAmount >= 10000
+        val minOrderPrice = totalAmount >= MIN_ORDER_COST
 
         orderDetails()
         discountBeforePrice()
@@ -104,7 +108,7 @@ class PromotionController(private val inputView: InputView, private val outputVi
     }
 
     private fun presentEvent(minOrderPrice: Boolean): Int {
-        val champagne = totalAmount / 120000
+        val champagne = totalAmount / PRESENT_AMOUNT
         outputView.printPresentMenu(champagne, minOrderPrice)
         outputView.printBlank()
         return champagne
@@ -116,7 +120,7 @@ class PromotionController(private val inputView: InputView, private val outputVi
             discountDetails(items)
         }
         if (!minOrderPrice) {
-            outputView.printDiscountDetail("없음")
+            outputView.printDiscountDetail(NOTHING)
         }
         outputView.printBlank()
     }
@@ -138,7 +142,7 @@ class PromotionController(private val inputView: InputView, private val outputVi
     }
 
     private fun discountAfterPrice(champagne: Int) {
-        val present = champagne * 25000
+        val present = champagne * CHAMPAGNE_COST
         totalAmount += present
         outputView.printDiscountAfterPrice(totalAmount, totalDiscount)
         outputView.printBlank()

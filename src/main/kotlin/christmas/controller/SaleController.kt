@@ -20,7 +20,7 @@ import christmas.utils.Constants.WED
 import christmas.utils.Constants.WEEK_DISCOUNT
 
 class SaleController(private val date: Date) {
-    private var saleItems = mutableListOf<SaleItem>()
+    private val saleItems = mutableListOf<SaleItem>()
     fun saleStart(menuItems: List<MenuItem>): MutableList<SaleItem> {
 
         saleOfChristmas(date)

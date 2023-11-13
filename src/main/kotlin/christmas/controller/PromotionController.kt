@@ -15,15 +15,13 @@ class PromotionController(private val inputView: InputView, private val outputVi
 
     private lateinit var date: Date
     private lateinit var menuItems: List<MenuItem>
-    private var saleController = SaleController()
-    private var badgeController = BadgeController(saleController, outputView)
+
 
     fun promotionStart() {
         readDateNumber()
         orderMenu()
-        MenuController(menuItems, outputView, date, saleController)
-        badgeController = BadgeController(saleController, outputView)
-        badgeController.eventBadge()
+        MenuController(menuItems, outputView, date)
+
     }
 
     private fun readDateNumber() {

@@ -19,10 +19,9 @@ import christmas.utils.Constants.TUE
 import christmas.utils.Constants.WED
 import christmas.utils.Constants.WEEK_DISCOUNT
 
-class SaleController {
+class SaleController(private val date: Date) {
     private var saleItems = mutableListOf<SaleItem>()
-    fun saleStart(dateNumber: Int, menuItems: List<MenuItem>): MutableList<SaleItem> {
-        val date = Date(dateNumber.toString())
+    fun saleStart(menuItems: List<MenuItem>): MutableList<SaleItem> {
 
         saleOfChristmas(date)
         saleOfWeekendOrWeekday(date, menuItems)

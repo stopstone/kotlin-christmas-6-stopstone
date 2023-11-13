@@ -10,10 +10,12 @@ import christmas.view.OutputView
 class MenuController(
     private val menuItems: List<MenuItem>,
     private val outputView: OutputView,
-    private val date: Date, private val saleController: SaleController
+    private val date: Date
 ) {
 
     private lateinit var totalAmount: TotalAmount
+    private var saleController = SaleController(date)
+    private var badgeController = BadgeController(saleController, outputView)
 
     init {
         outputView.printPreviewEvent(date.getDate())
@@ -26,6 +28,7 @@ class MenuController(
         discountDetail()
         totalDiscountAmount()
         afterDiscountAmount()
+        badgeController.eventBadge()
     }
 
     private fun orderMenuDetail() {
@@ -50,7 +53,7 @@ class MenuController(
     }
 
     private fun discountDetail() {
-        val discountDetails = saleController.saleStart(date.getDate(), menuItems)
+        val discountDetails = saleController.saleStart(menuItems)
         outputView.printDiscountDetail(discountDetails)
     }
 

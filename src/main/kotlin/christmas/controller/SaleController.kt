@@ -31,9 +31,6 @@ class SaleController {
 
         return saleItems
     }
-    fun totalOrderAmount(menuItems: List<MenuItem>): Int {
-        return menuItems.sumOf { it.menu.itemPrice * it.count }
-    }
 
     fun totalDiscountAmount(): Int {
         return saleItems.sumOf { it.discountAmount }

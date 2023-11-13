@@ -1,6 +1,7 @@
 package christmas.view
 
 import christmas.model.MenuItem
+import christmas.model.SaleItem
 import christmas.utils.Constants.CHAMPAGNE
 import christmas.utils.Constants.MINUS
 import christmas.utils.Constants.NOTHING
@@ -67,12 +68,17 @@ class OutputView {
         printBlank()
     }
 
-    fun printDiscountDetailMessage() {
+    fun printDiscountDetail(discountDetails: MutableList<SaleItem>) {
         println(DISCOUNT_DETAIL)
+        discountDetails
+            .filter { it.discountAmount != 0 }
+            .forEach { printSingleDiscountDetail(it) }
+        printBlank()
     }
 
-    fun printDiscountDetail(discountDetail: String) {
-        println(discountDetail)
+    private fun printSingleDiscountDetail(discountItem: SaleItem) {
+        val formattedDiscount = formatNumberWithComma(discountItem.discountAmount * MINUS)
+        println("${discountItem.sale.saleName}: $formattedDiscount$WON")
     }
 
     fun printTotalDiscountPrice(totalDiscount: Int) {

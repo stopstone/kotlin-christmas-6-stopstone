@@ -40,7 +40,6 @@ class MenuController(
 
     private fun beforeDiscountAmount() {
         totalAmount = TotalAmount(menuItems)
-        outputView.printBeforeAmountMessage()
         outputView.beforeDiscountTotalAmount(totalAmount.getTotalAmount())
     }
 

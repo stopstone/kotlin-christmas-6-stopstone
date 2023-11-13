@@ -49,11 +49,9 @@ class OutputView {
         println(ORDER_MENU)
     }
 
-    fun printBeforeAmountMessage() {
-        println(BEFORE_DISCOUNT_AMOUNT)
-    }
 
     fun beforeDiscountTotalAmount(totalAmount: Int) {
+        println(BEFORE_DISCOUNT_AMOUNT)
         println("${formatNumberWithComma(totalAmount)}${WON}")
         printBlank()
     }

@@ -6,7 +6,6 @@ import christmas.utils.Constants
 import christmas.utils.Constants.MIN_ORDER_COST
 import christmas.utils.Constants.WON
 import christmas.utils.StringFormatter.formatNumberWithComma
-import christmas.validator.ValidateDate.validate
 import christmas.validator.ValidateOrder.checkDuplicateMenu
 import christmas.view.InputView
 import christmas.view.OutputView
@@ -33,9 +32,8 @@ class PromotionController(private val inputView: InputView, private val outputVi
     private fun readDateNumber() {
         outputView.inputVisitDateMessage()
         while (true) {
-            date = Date(inputView.inputDate())
             try {
-                validate(date.getDate().toString())
+                date = Date(inputView.inputDate())
                 break
             } catch (e: IllegalArgumentException) {
                 println(e.message)

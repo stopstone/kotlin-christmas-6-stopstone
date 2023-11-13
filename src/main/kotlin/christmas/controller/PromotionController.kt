@@ -2,10 +2,8 @@ package christmas.controller
 
 
 import christmas.model.*
-import christmas.utils.Constants.CHAMPAGNE_COST
+import christmas.utils.Constants
 import christmas.utils.Constants.MIN_ORDER_COST
-import christmas.utils.Constants.NOTHING
-import christmas.utils.Constants.PRESENT_AMOUNT
 import christmas.validator.ValidateDate.validate
 import christmas.validator.ValidateOrder.checkDuplicateMenu
 import christmas.view.InputView
@@ -18,28 +16,24 @@ class PromotionController(private val inputView: InputView, private val outputVi
 
     private lateinit var date: Date
     private lateinit var menuItems: List<MenuItem>
-    private lateinit var saleController: SaleController
     private var totalAmount = 0
     private var totalDiscount = 0
     private lateinit var eachDiscount: MutableList<Int>
 
     fun promotionStart() {
-        val dateNumber = readDateNumber()
+        readDateNumber()
         orderMenu()
-        discountPrice(dateNumber, menuItems)
+        discountPrice(date.getDate())
         choiceBadge(totalDiscount)
-        printResult(dateNumber)
-
+        printResult()
     }
 
-    private fun readDateNumber(): Int {
+    private fun readDateNumber() {
         outputView.inputVisitDateMessage()
-        var dateNumber: String
         while (true) {
-            dateNumber = inputView.inputDate()
-            date = Date()
+            date = Date(inputView.inputDate())
             try {
-                validate(dateNumber)
+                validate(date.getDate().toString())
                 break
             } catch (e: IllegalArgumentException) {
                 println(e.message)
@@ -47,15 +41,13 @@ class PromotionController(private val inputView: InputView, private val outputVi
                 println(e.message)
             }
         }
-        return dateNumber.toInt()
     }
 
     private fun orderMenu() {
         outputView.printOrderToMenu()
         while (true) {
             try {
-                val order = inputView.inputMenu()
-                val items = checkDuplicateMenu(order)
+                val items = checkDuplicateMenu(inputView.inputMenu())
                 menuItems = createMenuItems(items)
                 break
             } catch (e: IllegalArgumentException) {
@@ -67,8 +59,8 @@ class PromotionController(private val inputView: InputView, private val outputVi
 
     }
 
-    private fun discountPrice(dateNumber: Int, menuItems: List<MenuItem>) {
-        saleController = SaleController()
+    private fun discountPrice(dateNumber: Int) {
+        val saleController = SaleController()
         eachDiscount = saleController.saleStart(dateNumber, menuItems)
         totalAmount = saleController.totalOrderAmount(menuItems)
         totalDiscount = saleController.totalDiscountAmount(eachDiscount)
@@ -78,11 +70,10 @@ class PromotionController(private val inputView: InputView, private val outputVi
     private fun choiceBadge(totalDiscount: Int): String {
         val selectedBadge = Badge.entries.firstOrNull { totalDiscount >= it.threshold } ?: Badge.NONE
         return selectedBadge.displayBadge
-
     }
 
-    private fun printResult(dateNumber: Int) {
-        outputView.printPreviewEvent(dateNumber)
+    private fun printResult() {
+        outputView.printPreviewEvent(date.getDate())
         outputView.printBlank()
 
         val minOrderPrice = totalAmount >= MIN_ORDER_COST
@@ -107,7 +98,7 @@ class PromotionController(private val inputView: InputView, private val outputVi
     }
 
     private fun presentEvent(minOrderPrice: Boolean): Int {
-        val champagne = totalAmount / PRESENT_AMOUNT
+        val champagne = totalAmount / Constants.PRESENT_AMOUNT
         outputView.printPresentMenu(champagne, minOrderPrice)
         return champagne
     }
@@ -118,7 +109,7 @@ class PromotionController(private val inputView: InputView, private val outputVi
             discountDetails(items)
         }
         if (!minOrderPrice) {
-            outputView.printDiscountDetail(NOTHING)
+            outputView.printDiscountDetail(Constants.NOTHING)
         }
     }
 
@@ -138,7 +129,7 @@ class PromotionController(private val inputView: InputView, private val outputVi
     }
 
     private fun discountAfterPrice(champagne: Int) {
-        val present = champagne * CHAMPAGNE_COST
+        val present = champagne * Constants.CHAMPAGNE_COST
         totalAmount += present
         outputView.printDiscountAfterPrice(totalAmount, totalDiscount)
     }
@@ -147,4 +138,5 @@ class PromotionController(private val inputView: InputView, private val outputVi
         val badgeKind = choiceBadge(totalDiscount)
         outputView.printEventBadge(badgeKind)
     }
+
 }

@@ -45,6 +45,7 @@ class OutputView {
     }
 
     fun printOrderMenuMessage() {
+        printBlank()
         println(ORDER_MENU)
     }
 
@@ -98,5 +99,5 @@ class OutputView {
         println(badgeKind)
     }
 
-    fun printBlank() = println()
+    private fun printBlank() = println()
 }

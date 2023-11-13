@@ -67,10 +67,12 @@ class OutputView {
         printBlank()
     }
 
-    fun printDiscountDetail(discountDetail: String) {
+    fun printDiscountDetailMessage() {
         println(DISCOUNT_DETAIL)
+    }
+
+    fun printDiscountDetail(discountDetail: String) {
         println(discountDetail)
-        printBlank()
     }
 
     fun printTotalDiscountPrice(totalDiscount: Int) {

@@ -4,6 +4,7 @@ package christmas.controller
 import christmas.model.*
 import christmas.utils.Constants
 import christmas.utils.Constants.MIN_ORDER_COST
+import christmas.utils.Constants.PRESENT_AMOUNT
 import christmas.utils.Constants.WON
 import christmas.utils.StringFormatter.formatNumberWithComma
 import christmas.validator.ValidateOrder.checkDuplicateMenu
@@ -98,7 +99,7 @@ class PromotionController(private val inputView: InputView, private val outputVi
     }
 
     private fun presentEvent(minOrderPrice: Boolean): Int {
-        val champagne = totalAmount / Constants.PRESENT_AMOUNT
+        val champagne = totalAmount / PRESENT_AMOUNT
         outputView.printPresentMenu(champagne, minOrderPrice)
         return champagne
     }
@@ -114,11 +115,13 @@ class PromotionController(private val inputView: InputView, private val outputVi
     }
 
     private fun discountDetails(items: List<String>) {
+        outputView.printDiscountDetailMessage()
         for (idx in eachDiscount.indices) {
             if (eachDiscount[idx] != 0) {
                 outputView.printDiscountDetail("${items[idx]} ${formatNumberWithComma(eachDiscount[idx])}$WON")
             }
         }
+        outputView.printBlank()
     }
 
     private fun totalDiscountPrice(minOrderPrice: Boolean) {

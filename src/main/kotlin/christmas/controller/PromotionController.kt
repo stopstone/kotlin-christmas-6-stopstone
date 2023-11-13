@@ -2,7 +2,7 @@ package christmas.controller
 
 
 import christmas.domain.Date
-import christmas.domain.createMenuItems
+import christmas.model.createMenuItems
 import christmas.model.*
 import christmas.validator.ValidateOrder.checkDuplicateMenu
 import christmas.view.InputView

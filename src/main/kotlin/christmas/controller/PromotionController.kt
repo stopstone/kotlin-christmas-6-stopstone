@@ -76,8 +76,9 @@ class PromotionController(private val inputView: InputView, private val outputVi
     }
 
     private fun choiceBadge(totalDiscount: Int): String {
-        val badge = Badge()
-        return badge.selectBadge(totalDiscount)
+        val selectedBadge = Badge.entries.firstOrNull { totalDiscount >= it.threshold } ?: Badge.NONE
+        return selectedBadge.displayBadge
+
     }
 
     private fun printResult(dateNumber: Int) {

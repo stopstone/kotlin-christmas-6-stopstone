@@ -70,9 +70,10 @@ object Constants {
 
 
     // Badge
-    const val STAR_DISCOUNT = 5000
-    const val TREE_DISCOUNT = 10000
-    const val SANTA_DISCOUNT = 20000
+    const val NOTHING_DISCOUNT = 0
+    const val STAR_DISCOUNT = 5_000
+    const val TREE_DISCOUNT = 10_000
+    const val SANTA_DISCOUNT = 20_000
 
     const val BADGE_STAR = "별"
     const val BADGE_TREE = "트리"

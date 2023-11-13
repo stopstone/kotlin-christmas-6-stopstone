@@ -69,11 +69,16 @@ class OutputView {
         printBlank()
     }
 
-    fun printDiscountDetail(discountDetails: MutableList<SaleItem>) {
+    fun printDiscountDetail(discountDetails: MutableList<SaleItem>, minOrderPrice: Boolean) {
         println(DISCOUNT_DETAIL)
-        discountDetails
-            .filter { it.discountAmount != 0 }
-            .forEach { printSingleDiscountDetail(it) }
+        if (minOrderPrice) {
+            discountDetails
+                .filter { it.discountAmount != 0 }
+                .forEach { printSingleDiscountDetail(it) }
+        }
+        if (!minOrderPrice) {
+            println(NOTHING)
+        }
         printBlank()
     }
 
@@ -82,9 +87,14 @@ class OutputView {
         println("${discountItem.sale.saleName}: $formattedDiscount$WON")
     }
 
-    fun printTotalDiscountPrice(totalDiscount: Int) {
+    fun printTotalDiscountPrice(totalDiscount: Int, minOrderPrice: Boolean) {
         println(TOTAL_DISCOUNT_PRICE)
-        println("${formatNumberWithComma(totalDiscount * MINUS)}${WON}")
+        if (minOrderPrice) {
+            println("${formatNumberWithComma(totalDiscount * MINUS)}${WON}")
+        }
+        if (!minOrderPrice) {
+            println(NOTHING)
+        }
         printBlank()
     }
 

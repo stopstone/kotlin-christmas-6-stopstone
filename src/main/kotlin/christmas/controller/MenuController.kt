@@ -5,6 +5,7 @@ import christmas.model.MenuItem
 import christmas.domain.TotalAmount
 import christmas.utils.Constants
 import christmas.utils.Constants.CHAMPAGNE_COST
+import christmas.utils.Constants.MIN_ORDER_COST
 import christmas.view.OutputView
 
 class MenuController(
@@ -22,11 +23,12 @@ class MenuController(
         menuSettings()
     }
     private fun menuSettings() {
+        val minOrderPrice = TotalAmount(menuItems).getTotalAmount() >= MIN_ORDER_COST
         orderMenuDetail()
-        presentEventMenu()
+        presentEventMenu(minOrderPrice)
         beforeDiscountAmount()
-        discountDetail()
-        totalDiscountAmount()
+        discountDetail(minOrderPrice)
+        totalDiscountAmount(minOrderPrice)
         afterDiscountAmount()
         badgeController.eventBadge()
     }
@@ -42,9 +44,9 @@ class MenuController(
         outputView.beforeDiscountTotalAmount(totalAmount.getTotalAmount())
     }
 
-    private fun presentEventMenu() {
+    private fun presentEventMenu(minOrderPrice: Boolean) {
         val champagne = getChampagne(menuItems)
-        outputView.printPresentMenu(champagne, true)
+        outputView.printPresentMenu(champagne, minOrderPrice)
     }
 
     private fun getChampagne(menuItems: List<MenuItem>): Int {
@@ -52,14 +54,14 @@ class MenuController(
         return totalAmount.getTotalAmount() / Constants.PRESENT_AMOUNT
     }
 
-    private fun discountDetail() {
+    private fun discountDetail(minOrderPrice: Boolean) {
         val discountDetails = saleController.saleStart(menuItems)
-        outputView.printDiscountDetail(discountDetails)
+        outputView.printDiscountDetail(discountDetails, minOrderPrice)
     }
 
-    private fun totalDiscountAmount() {
+    private fun totalDiscountAmount(minOrderPrice: Boolean) {
         val totalDiscount = saleController.totalDiscountAmount()
-        outputView.printTotalDiscountPrice(totalDiscount)
+        outputView.printTotalDiscountPrice(totalDiscount, minOrderPrice)
     }
 
     private fun afterDiscountAmount() {
@@ -68,4 +70,6 @@ class MenuController(
         val totalDiscount = saleController.totalDiscountAmount()
         outputView.printDiscountAfterPrice(totalPrice - totalDiscount)
     }
+
+
 }

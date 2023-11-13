@@ -96,8 +96,7 @@ class SaleController {
     }
 
     private fun presentEvent(menuItems: MutableList<MenuItem>) {
-        val totalAmount = menuItems.sumOf { it.menu.itemPrice * it.count }
-        val remainingAmount = totalAmount / PRESENT_AMOUNT
+        val remainingAmount = totalOrderAmount(menuItems) / PRESENT_AMOUNT
         saleOfPresent(remainingAmount)
     }
 

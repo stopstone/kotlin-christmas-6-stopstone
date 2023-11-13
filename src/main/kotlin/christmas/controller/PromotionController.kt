@@ -99,19 +99,16 @@ class PromotionController(private val inputView: InputView, private val outputVi
     private fun orderDetails() {
         outputView.printOrderMenuMessage()
         outputView.printOrderDetail(menuItems)
-        outputView.printBlank()
     }
 
     private fun discountBeforePrice() {
         outputView.printBeforeAmountMessage()
         outputView.beforeDiscountTotalAmount(totalAmount)
-        outputView.printBlank()
     }
 
     private fun presentEvent(minOrderPrice: Boolean): Int {
         val champagne = totalAmount / PRESENT_AMOUNT
         outputView.printPresentMenu(champagne, minOrderPrice)
-        outputView.printBlank()
         return champagne
     }
 
@@ -123,7 +120,6 @@ class PromotionController(private val inputView: InputView, private val outputVi
         if (!minOrderPrice) {
             outputView.printDiscountDetail(NOTHING)
         }
-        outputView.printBlank()
     }
 
     private fun discountDetails(items: List<String>) {
@@ -139,19 +135,16 @@ class PromotionController(private val inputView: InputView, private val outputVi
             totalDiscount = 0
         }
         outputView.printTotalDiscountPrice(totalDiscount)
-        outputView.printBlank()
     }
 
     private fun discountAfterPrice(champagne: Int) {
         val present = champagne * CHAMPAGNE_COST
         totalAmount += present
         outputView.printDiscountAfterPrice(totalAmount, totalDiscount)
-        outputView.printBlank()
     }
 
     private fun eventBadge() {
         val badgeKind = choiceBadge(totalDiscount)
         outputView.printEventBadge(badgeKind)
-        outputView.printBlank()
     }
 }

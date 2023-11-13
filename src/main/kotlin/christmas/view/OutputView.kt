@@ -35,10 +35,12 @@ class OutputView {
         for (item in menuItems) {
             println("${item.menu.itemName} ${item.count}${SOME_COUNT}")
         }
+        printBlank()
     }
 
     fun printPreviewEvent(dateNumber: Int) {
         println(PREVIEW_EVENT_MESSAGE.format(dateNumber))
+        printBlank()
     }
 
     fun printOrderMenuMessage() {
@@ -50,7 +52,8 @@ class OutputView {
     }
 
     fun beforeDiscountTotalAmount(totalAmount: Int) {
-        println("${totalAmount * MINUS}${WON}")
+        println("${totalAmount}${WON}")
+        printBlank()
     }
 
     fun printPresentMenu(champagne: Int, minOrderPrice: Boolean) {
@@ -61,21 +64,25 @@ class OutputView {
         if (!minOrderPrice) {
             println(NOTHING)
         }
+        printBlank()
     }
 
     fun printDiscountDetail(discountDetail: String) {
         println(DISCOUNT_DETAIL)
         println(discountDetail)
+        printBlank()
     }
 
     fun printTotalDiscountPrice(totalDiscount: Int) {
         println(TOTAL_DISCOUNT_PRICE)
         println("${totalDiscount * MINUS}${WON}")
+        printBlank()
     }
 
     fun printDiscountAfterPrice(totalAmount: Int, totalDiscount: Int) {
         println(AFTER_DISCOUNT_PRICE)
         println(totalAmount-totalDiscount)
+        printBlank()
     }
 
     fun printEventBadge(badgeKind: String) {

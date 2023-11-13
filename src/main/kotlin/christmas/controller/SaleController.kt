@@ -20,8 +20,8 @@ import christmas.utils.Constants.WED
 import christmas.utils.Constants.WEEK_DISCOUNT
 
 class SaleController {
-    private var saleItems = mutableListOf<Int>()
-    fun saleStart(dateNumber: Int, menuItems: List<MenuItem>): MutableList<Int> {
+    private var saleItems = mutableListOf<SaleItem>()
+    fun saleStart(dateNumber: Int, menuItems: List<MenuItem>): MutableList<SaleItem> {
         val date = Date(dateNumber.toString())
 
         saleOfChristmas(date)
@@ -35,8 +35,8 @@ class SaleController {
         return menuItems.sumOf { it.menu.itemPrice * it.count }
     }
 
-    fun totalDiscountAmount(totalDiscount: MutableList<Int>): Int {
-        return totalDiscount.sum()
+    fun totalDiscountAmount(): Int {
+        return saleItems.sumOf { it.discountAmount }
     }
 
     private fun saleOfChristmas(date: Date) {
@@ -51,7 +51,7 @@ class SaleController {
         if (dateNumber > CHRISTMAS_DISCOUNT) {
             christmasSale = NO_DISCOUNT
         }
-        saleItems.add(christmasSale)
+        saleItems.add(SaleItem(Sale.CHRISTMAS_SALE, christmasSale))
     }
 
     private fun saleOfWeekendOrWeekday(date: Date, menuItems: List<MenuItem>) {
@@ -60,10 +60,10 @@ class SaleController {
         when (day) {
             SUN, MON, TUE, WED, THU -> {
                 saleOfWeekday(menuItems)
-                saleItems.add(NO_DISCOUNT)
+                saleItems.add(SaleItem(Sale.WEEKEND_SALE, NO_DISCOUNT))
             }
             FRI, SAT -> {
-                saleItems.add(NO_DISCOUNT)
+                saleItems.add(SaleItem(Sale.WEEKDAY_SALE, NO_DISCOUNT))
                 saleOfWeekend(menuItems)
             }
         }
@@ -75,7 +75,7 @@ class SaleController {
         val resultMainSale = mainSale.map { it.count * WEEK_DISCOUNT }
 
         if (resultMainSale.isNotEmpty()) {
-            saleItems.add(resultMainSale.first())
+            saleItems.add(SaleItem(Sale.WEEKEND_SALE, resultMainSale.first()))
         }
     }
 
@@ -84,7 +84,7 @@ class SaleController {
         val resultDessertSale = dessertSale.map { it.count * WEEK_DISCOUNT }
 
         if (resultDessertSale.isNotEmpty()) {
-            saleItems.add(resultDessertSale.first())
+            saleItems.add(SaleItem(Sale.WEEKDAY_SALE, resultDessertSale.first()))
         }
     }
 
@@ -93,7 +93,7 @@ class SaleController {
         val dateNumber = date.getDate()
 
         if (dateNumber in starDays) {
-            saleItems.add(SPECIAL_DISCOUNT)
+            saleItems.add(SaleItem(Sale.SPECIAL_SALE, SPECIAL_DISCOUNT))
         }
     }
 

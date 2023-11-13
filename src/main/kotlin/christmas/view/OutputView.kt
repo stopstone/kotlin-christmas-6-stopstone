@@ -88,9 +88,9 @@ class OutputView {
         printBlank()
     }
 
-    fun printDiscountAfterPrice(totalAmount: Int, totalDiscount: Int) {
+    fun printDiscountAfterPrice(afterDiscountPrice: Int) {
         println(AFTER_DISCOUNT_PRICE)
-        println("${formatNumberWithComma(totalAmount-totalDiscount)}$WON")
+        println("${formatNumberWithComma(afterDiscountPrice)}$WON")
         printBlank()
     }
 

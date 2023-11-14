@@ -3,7 +3,6 @@ package christmas.controller
 import christmas.domain.Date
 import christmas.domain.EventBadge
 import christmas.domain.Payment
-import christmas.view.OutputView
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource

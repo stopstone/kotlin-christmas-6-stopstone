@@ -4,6 +4,7 @@ import christmas.repository.MenuItem
 import christmas.utils.Constants
 import christmas.utils.Constants.CHAMPAGNE_COST
 import christmas.utils.Constants.MIN_ORDER_COST
+import christmas.validator.UserCaution.isOrderAmountValid
 import christmas.view.OutputView
 
 class PromotionResult(
@@ -22,7 +23,7 @@ class PromotionResult(
     }
 
     private fun menuSettings() {
-        val minOrderPrice = TotalAmount(menuItems).getTotalAmount() >= MIN_ORDER_COST
+        val minOrderPrice = isOrderAmountValid(menuItems)
         orderMenuDetail()
         presentEventMenu(minOrderPrice)
         beforeDiscountAmount()

@@ -17,6 +17,10 @@ object ValidateOrder {
         return menuItems
     }
 
+    internal fun checkCountZeroMenu(count: String) {
+        require(count.toInt() != 0) {IllegalArgumentException("$ERROR_MESSAGE $INVALID_ORDER_MESSAGE")}
+    }
+
     internal fun checkMinOrderMenu(menuItems: List<String>) {
         require(menuItems.isNotEmpty()) {"$ERROR_MESSAGE $INVALID_ORDER_MESSAGE"}
     }

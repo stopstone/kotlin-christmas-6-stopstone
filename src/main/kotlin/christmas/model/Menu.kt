@@ -31,6 +31,7 @@ import christmas.utils.Constants.ZERO_COKE
 import christmas.utils.Constants.ZERO_COKE_COST
 import christmas.utils.Messages.ERROR_MESSAGE
 import christmas.utils.Messages.INVALID_ORDER_MESSAGE
+import christmas.validator.ValidateOrder.checkCountZeroMenu
 import christmas.validator.ValidateOrder.checkLimitOrderMenu
 import christmas.validator.ValidateOrder.checkMinOrderMenu
 
@@ -55,6 +56,7 @@ enum class Menu(val itemCategory: String, val itemName: String, val itemPrice: I
 fun createMenuItem(item: String): MenuItem {
     try {
         val (menu, count) = item.split(ITEMS_DELIMITER)
+        checkCountZeroMenu(count)
         return MenuItem(findMenuItems(menu), count.toInt())
     } catch (e: IllegalArgumentException) {
         throw IllegalArgumentException("$ERROR_MESSAGE $INVALID_ORDER_MESSAGE")

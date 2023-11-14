@@ -1,11 +1,6 @@
 package christmas.model
 
-import christmas.utils.Constants.APPETIZER
-import christmas.utils.Constants.MUSHROOM_SOUP
-import christmas.utils.Constants.MUSHROOM_SOUP_COST
 import christmas.validator.ValidateOrder.checkCountZeroMenu
-import christmas.validator.ValidateOrder.checkLimitOrderMenu
-import christmas.model.Menu
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.assertThrows

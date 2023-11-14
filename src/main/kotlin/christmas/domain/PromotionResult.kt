@@ -12,7 +12,6 @@ class PromotionResult(
     date: Date
 ) {
 
-    private lateinit var totalAmount: TotalAmount
     private var payment = Payment(date)
     private var eventBadge = EventBadge(payment)
 
@@ -52,7 +51,7 @@ class PromotionResult(
     }
 
     private fun getChampagne(menuItems: List<MenuItem>): Int {
-        totalAmount = TotalAmount(menuItems)
+        val totalAmount = TotalAmount(menuItems)
         return totalAmount.getTotalAmount() / Constants.PRESENT_AMOUNT
     }
 

@@ -14,7 +14,7 @@ class PromotionResult(
 
     private lateinit var totalAmount: TotalAmount
     private var payment = Payment(date)
-    private var eventBadge = EventBadge(payment, outputView)
+    private var eventBadge = EventBadge(payment)
 
     init {
         outputView.printPreviewEvent(date.getDate())
@@ -29,7 +29,7 @@ class PromotionResult(
         discountDetail(minOrderPrice)
         totalDiscountAmount(minOrderPrice)
         afterDiscountAmount()
-        eventBadge.processDiscountEventBadge()
+        outputView.printEventBadge(eventBadge.processDiscountEventBadge())
     }
 
 

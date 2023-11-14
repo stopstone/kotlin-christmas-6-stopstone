@@ -14,23 +14,17 @@ class PromotionManager(private val inputView: InputView, private val outputView:
         outputView.printWelcomeRestaurant()
     }
 
-    private lateinit var date: Date
-    private lateinit var menuItems: List<MenuItem>
-    private val menuSettings = MenuSettings()
-
     fun promotionStart() {
-        readDateNumber()
-        orderMenu()
-        PromotionResult(menuItems, outputView, date)
-
+        val dateNumber = readDateNumber()
+        val menuItems = orderMenu()
+        PromotionResult(menuItems, outputView, dateNumber)
     }
 
-    private fun readDateNumber() {
+    private fun readDateNumber(): Date {
         outputView.inputVisitDateMessage()
         while (true) {
             try {
-                date = Date(inputView.inputDate())
-                break
+                return Date(inputView.inputDate())
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             } catch (e: NumberFormatException) {
@@ -39,13 +33,14 @@ class PromotionManager(private val inputView: InputView, private val outputView:
         }
     }
 
-    private fun orderMenu() {
+    private fun orderMenu(): List<MenuItem> {
+        val menuSettings = MenuSettings()
+
         outputView.printOrderToMenu()
         while (true) {
             try {
                 val items = checkDuplicateMenu(inputView.inputMenu())
-                menuItems = menuSettings.createMenuItems(items)
-                break
+                return menuSettings.createMenuItems(items)
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             } catch (e: IndexOutOfBoundsException) {

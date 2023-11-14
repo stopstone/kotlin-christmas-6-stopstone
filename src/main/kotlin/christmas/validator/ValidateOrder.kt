@@ -25,14 +25,4 @@ object ValidateOrder {
     internal fun checkMinOrderMenu(menuItems: List<String>) {
         require(menuItems.isNotEmpty()) {"$ERROR_MESSAGE $INVALID_ORDER_MESSAGE"}
     }
-
-    internal fun checkLimitOrderMenu(menuItems: List<MenuItem>) {
-        val limit = menuItems.sumOf { it.count }
-        require(limit <= ORDER_LIMIT) {"$ERROR_MESSAGE $INVALID_ORDER_MESSAGE"}
-    }
-
-    internal fun checkOrderOnlyDrink(menuItems: MutableList<MenuItem>) {
-        require(menuItems.any { it.menu.itemCategory != DRINK }) {"$ERROR_MESSAGE $INVALID_ORDER_MESSAGE"}
-    }
-
 }

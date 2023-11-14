@@ -32,9 +32,9 @@ import christmas.utils.Constants.ZERO_COKE_COST
 import christmas.utils.Messages.ERROR_MESSAGE
 import christmas.utils.Messages.INVALID_ORDER_MESSAGE
 import christmas.validator.ValidateOrder.checkCountZeroMenu
-import christmas.validator.ValidateOrder.checkLimitOrderMenu
+import christmas.validator.UserCaution.checkLimitOrderMenu
 import christmas.validator.ValidateOrder.checkMinOrderMenu
-import christmas.validator.ValidateOrder.checkOrderOnlyDrink
+import christmas.validator.UserCaution.checkOrderOnlyDrink
 
 enum class Menu(val itemCategory: String, val itemName: String, val itemPrice: Int) {
     APPETIZER_MUSHROOM_SOUP(APPETIZER, MUSHROOM_SOUP, MUSHROOM_SOUP_COST),

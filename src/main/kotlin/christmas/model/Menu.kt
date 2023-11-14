@@ -68,12 +68,15 @@ fun createMenuItem(item: String): MenuItem {
 
 fun createMenuItems(items: List<String>): List<MenuItem> {
     val menuItems = items.map { createMenuItem(it) }
-
-    checkMinOrderMenu(items)
-    checkLimitOrderMenu(menuItems)
-    checkOrderOnlyDrink(menuItems)
+    checkMenuItems(menuItems)
 
     return menuItems
+}
+
+private fun checkMenuItems(menuItems: List<MenuItem>) {
+    checkMinOrderMenu(menuItems)
+    checkLimitOrderMenu(menuItems)
+    checkOrderOnlyDrink(menuItems)
 }
 
 fun findMenuItems(menuName: String): Menu {

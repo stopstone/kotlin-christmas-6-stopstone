@@ -8,8 +8,7 @@ import christmas.utils.Messages
 class Date(private val dateNumber: String) {
 
     init {
-        require(dateNumber.isNotEmpty() && dateNumber.all { it.isDigit() }) {"${Messages.ERROR_MESSAGE} ${Messages.INVALID_DATE_MESSAGE}"}
-        require(dateNumber.toInt() in Constants.MIN_DATE..Constants.MAX_DATE) {"${Messages.ERROR_MESSAGE} ${Messages.INVALID_DATE_MESSAGE}"}
+        requireValidDateNumber(dateNumber)
     }
 
     fun calculateDay(dateNumber: Int): Int {
@@ -23,4 +22,14 @@ class Date(private val dateNumber: String) {
     fun getDate(): Int {
         return dateNumber.toInt()
     }
+
+    private fun requireValidDateNumber(dateNumber: String) {
+        require(dateNumber.isNotEmpty() && dateNumber.all { it.isDigit() }) {
+            "${Messages.ERROR_MESSAGE} ${Messages.INVALID_DATE_MESSAGE}"
+        }
+        require(dateNumber.toInt() in Constants.MIN_DATE..Constants.MAX_DATE) {
+            "${Messages.ERROR_MESSAGE} ${Messages.INVALID_DATE_MESSAGE}"
+        }
+    }
+
 }

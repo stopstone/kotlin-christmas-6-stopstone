@@ -67,20 +67,23 @@ class SaleController(private val date: Date) {
 
 
     private fun saleOfWeekend(menuItems: List<MenuItem>) {
-        val mainSale = menuItems.filter { it.menu.itemCategory == "메인" }
-        val resultMainSale = mainSale.map { it.count * WEEK_DISCOUNT }
+        val resultMainSale = menuItems.filter { it.menu.itemCategory == "메인" }
+            .map { it.count * WEEK_DISCOUNT }
+            .firstOrNull()
 
-        if (resultMainSale.isNotEmpty()) {
-            saleItems.add(SaleItem(Sale.WEEKEND_SALE, resultMainSale.first()))
+        resultMainSale?.let {
+            saleItems.add(SaleItem(Sale.WEEKEND_SALE, it))
         }
     }
 
-    private fun saleOfWeekday(menuItems: List<MenuItem>) {
-        val dessertSale = menuItems.filter { it.menu.itemCategory == "디저트" }
-        val resultDessertSale = dessertSale.map { it.count * WEEK_DISCOUNT }
 
-        if (resultDessertSale.isNotEmpty()) {
-            saleItems.add(SaleItem(Sale.WEEKDAY_SALE, resultDessertSale.first()))
+    private fun saleOfWeekday(menuItems: List<MenuItem>) {
+        val resultDessertSale = menuItems.filter { it.menu.itemCategory == "디저트" }
+            .map { it.count * WEEK_DISCOUNT }
+            .firstOrNull()
+
+        resultDessertSale?.let {
+            saleItems.add(SaleItem(Sale.WEEKDAY_SALE, it))
         }
     }
 

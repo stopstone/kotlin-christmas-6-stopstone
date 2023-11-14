@@ -87,11 +87,15 @@ class SaleController(private val date: Date) {
         }
     }
 
-    private fun saleOfSpecial(date: Date) {
+    private fun isSpecialDay(dateNumber: Int): Boolean {
         val starDays = listOf(3, 10, 17, 24, 25, 31)
+        return dateNumber in starDays
+    }
+
+    private fun saleOfSpecial(date: Date) {
         val dateNumber = date.getDate()
 
-        if (dateNumber in starDays) {
+        if (isSpecialDay(dateNumber)) {
             saleItems.add(SaleItem(Sale.SPECIAL_SALE, SPECIAL_DISCOUNT))
         }
     }

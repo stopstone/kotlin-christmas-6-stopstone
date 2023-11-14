@@ -2,7 +2,6 @@ package christmas.controller
 
 
 import christmas.domain.Date
-import christmas.model.createMenuItems
 import christmas.repository.MenuItem
 import christmas.validator.ValidateOrder.checkDuplicateMenu
 import christmas.view.InputView
@@ -19,7 +18,7 @@ class PromotionController(private val inputView: InputView, private val outputVi
     fun promotionStart() {
         readDateNumber()
         orderMenu()
-        MenuController(menuItems, outputView, date)
+        ResultController(menuItems, outputView, date)
     }
 
 

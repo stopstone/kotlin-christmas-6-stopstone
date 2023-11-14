@@ -39,8 +39,12 @@ class MenuController(
     }
 
     private fun beforeDiscountAmount() {
-        totalAmount = TotalAmount(menuItems)
-        outputView.beforeDiscountTotalAmount(totalAmount.getTotalAmount())
+        val totalAmount = calculateTotalAmount()
+        outputView.beforeDiscountTotalAmount(totalAmount)
+    }
+
+    private fun calculateTotalAmount(): Int {
+        return TotalAmount(menuItems).getTotalAmount()
     }
 
     private fun presentEventMenu(minOrderPrice: Boolean) {

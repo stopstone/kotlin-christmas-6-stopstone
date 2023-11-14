@@ -30,7 +30,7 @@ class MenuController(
         discountDetail(minOrderPrice)
         totalDiscountAmount(minOrderPrice)
         afterDiscountAmount()
-        badgeController.eventBadge()
+        badgeController.processDiscountEventBadge()
     }
 
     private fun orderMenuDetail() {

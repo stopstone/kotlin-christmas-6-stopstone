@@ -9,9 +9,15 @@ class BadgeController(private val saleController: SaleController, private val ou
         return selectedBadge.displayBadge
     }
 
-    fun eventBadge() {
-        val totalDiscount = saleController.totalDiscountAmount()
-        val badgeKind = choiceBadge(totalDiscount)
+    fun processDiscountEventBadge() {
+        calculateTotalDiscount().let(::choiceBadge).also(::printEventBadge)
+    }
+
+    private fun calculateTotalDiscount(): Int {
+        return saleController.totalDiscountAmount()
+    }
+
+    private fun printEventBadge(badgeKind: String) {
         outputView.printEventBadge(badgeKind)
     }
 }

@@ -1,6 +1,8 @@
 package christmas.domain
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -31,5 +33,19 @@ class DateTest {
         assertThrows<IllegalArgumentException> {
             Date(input)
         }
+    }
+
+    @Test
+    @DisplayName("일자를 입력하면 12월의 요일이 정상적으로 계산되어 나오는지 확인")
+    fun calculateDayTest() {
+        val date = Date("3")
+        assertEquals(date.calculateDay(date.getDate()), 0)
+    }
+
+    @Test
+    @DisplayName("일자가 정상적으로 받아지는지 확인")
+    fun getDateNumberTest() {
+        val date = Date("3")
+        assertEquals(date.getDate(), 3)
     }
 }

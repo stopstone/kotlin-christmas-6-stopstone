@@ -22,7 +22,6 @@ import christmas.utils.Constants.WEEK_DISCOUNT
 class SaleController(private val date: Date) {
     private val saleItems = mutableListOf<SaleItem>()
     fun saleStart(menuItems: List<MenuItem>): MutableList<SaleItem> {
-
         saleOfChristmas(date)
         saleOfWeekendOrWeekday(date, menuItems)
         saleOfSpecial(date)
@@ -31,9 +30,11 @@ class SaleController(private val date: Date) {
         return saleItems
     }
 
+
     fun totalDiscountAmount(): Int {
         return saleItems.sumOf { it.discountAmount }
     }
+
 
     private fun saleOfChristmas(date: Date) {
         val dateNumber = date.getDate()
@@ -49,6 +50,7 @@ class SaleController(private val date: Date) {
             }
         }
     }
+
 
     private fun saleOfWeekendOrWeekday(date: Date, menuItems: List<MenuItem>) {
         val dateNumber = date.getDate()
@@ -70,7 +72,6 @@ class SaleController(private val date: Date) {
         val resultMainSale = menuItems.filter { it.menu.itemCategory == "메인" }
             .map { it.count * WEEK_DISCOUNT }
             .firstOrNull()
-
         resultMainSale?.let {
             saleItems.add(SaleItem(Sale.WEEKEND_SALE, it))
         }
@@ -81,16 +82,17 @@ class SaleController(private val date: Date) {
         val resultDessertSale = menuItems.filter { it.menu.itemCategory == "디저트" }
             .map { it.count * WEEK_DISCOUNT }
             .firstOrNull()
-
         resultDessertSale?.let {
             saleItems.add(SaleItem(Sale.WEEKDAY_SALE, it))
         }
     }
 
+
     private fun isSpecialDay(dateNumber: Int): Boolean {
         val starDays = listOf(3, 10, 17, 24, 25, 31)
         return dateNumber in starDays
     }
+
 
     private fun saleOfSpecial(date: Date) {
         val dateNumber = date.getDate()

@@ -16,13 +16,12 @@ class PromotionController(private val inputView: InputView, private val outputVi
     private lateinit var date: Date
     private lateinit var menuItems: List<MenuItem>
 
-
     fun promotionStart() {
         readDateNumber()
         orderMenu()
         MenuController(menuItems, outputView, date)
-
     }
+
 
     private fun readDateNumber() {
         outputView.inputVisitDateMessage()
@@ -38,6 +37,7 @@ class PromotionController(private val inputView: InputView, private val outputVi
         }
     }
 
+
     private fun orderMenu() {
         outputView.printOrderToMenu()
         while (true) {
@@ -51,6 +51,5 @@ class PromotionController(private val inputView: InputView, private val outputVi
                 println(e.message)
             }
         }
-
     }
 }

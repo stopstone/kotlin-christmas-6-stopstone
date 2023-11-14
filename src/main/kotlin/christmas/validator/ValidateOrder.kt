@@ -1,12 +1,8 @@
 package christmas.validator
 
 import christmas.model.MenuItem
-import christmas.utils.Constants
-import christmas.utils.Constants.APPETIZER
-import christmas.utils.Constants.DESSERT
 import christmas.utils.Constants.DRINK
 import christmas.utils.Constants.ITEMS_DELIMITER
-import christmas.utils.Constants.MAIN
 import christmas.utils.Constants.MENU_DELIMITER
 import christmas.utils.Constants.ORDER_LIMIT
 import christmas.utils.Messages.ERROR_MESSAGE

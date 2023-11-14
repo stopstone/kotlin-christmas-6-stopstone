@@ -68,10 +68,15 @@ class MenuController(
     }
 
     private fun afterDiscountAmount() {
-        totalAmount = TotalAmount(menuItems)
-        val totalPrice = totalAmount.getTotalAmount() + (getChampagne(menuItems) * CHAMPAGNE_COST)
+        val totalPriceAfterDiscount = calculateTotalPriceAfterDiscount()
+        outputView.printDiscountAfterPrice(totalPriceAfterDiscount)
+    }
+
+    private fun calculateTotalPriceAfterDiscount(): Int {
+        val totalAmount = TotalAmount(menuItems).getTotalAmount()
+        val champagneCost = getChampagne(menuItems) * CHAMPAGNE_COST
         val totalDiscount = saleController.totalDiscountAmount()
-        outputView.printDiscountAfterPrice(totalPrice - totalDiscount)
+        return totalAmount + champagneCost - totalDiscount
     }
 
 

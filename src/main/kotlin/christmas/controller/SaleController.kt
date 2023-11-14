@@ -36,18 +36,18 @@ class SaleController(private val date: Date) {
     }
 
     private fun saleOfChristmas(date: Date) {
-        var christmasSale = DISCOUNT_START
-        val cumulativeAmount: Int
         val dateNumber = date.getDate()
+        val cumulativeAmount: Int
 
-        if (dateNumber <= CHRISTMAS_DISCOUNT) {
-            cumulativeAmount = dateNumber * DISCOUNT_PLUS
-            christmasSale += cumulativeAmount
+        when {
+            dateNumber <= CHRISTMAS_DISCOUNT -> {
+                cumulativeAmount = dateNumber * DISCOUNT_PLUS
+                saleItems.add(SaleItem(Sale.CHRISTMAS_SALE, DISCOUNT_START + cumulativeAmount))
+            }
+            dateNumber > CHRISTMAS_DISCOUNT -> {
+                saleItems.add(SaleItem(Sale.CHRISTMAS_SALE, NO_DISCOUNT))
+            }
         }
-        if (dateNumber > CHRISTMAS_DISCOUNT) {
-            christmasSale = NO_DISCOUNT
-        }
-        saleItems.add(SaleItem(Sale.CHRISTMAS_SALE, christmasSale))
     }
 
     private fun saleOfWeekendOrWeekday(date: Date, menuItems: List<MenuItem>) {

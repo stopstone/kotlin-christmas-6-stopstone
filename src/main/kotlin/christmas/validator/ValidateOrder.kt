@@ -1,7 +1,12 @@
 package christmas.validator
 
 import christmas.model.MenuItem
+import christmas.utils.Constants
+import christmas.utils.Constants.APPETIZER
+import christmas.utils.Constants.DESSERT
+import christmas.utils.Constants.DRINK
 import christmas.utils.Constants.ITEMS_DELIMITER
+import christmas.utils.Constants.MAIN
 import christmas.utils.Constants.MENU_DELIMITER
 import christmas.utils.Constants.ORDER_LIMIT
 import christmas.utils.Messages.ERROR_MESSAGE
@@ -18,7 +23,7 @@ object ValidateOrder {
     }
 
     internal fun checkCountZeroMenu(count: String) {
-        require(count.toInt() != 0) {IllegalArgumentException("$ERROR_MESSAGE $INVALID_ORDER_MESSAGE")}
+        require(count.toInt() != 0) {"$ERROR_MESSAGE $INVALID_ORDER_MESSAGE"}
     }
 
     internal fun checkMinOrderMenu(menuItems: List<String>) {
@@ -28,6 +33,10 @@ object ValidateOrder {
     internal fun checkLimitOrderMenu(menuItems: List<MenuItem>) {
         val limit = menuItems.sumOf { it.count }
         require(limit <= ORDER_LIMIT) {"$ERROR_MESSAGE $INVALID_ORDER_MESSAGE"}
+    }
+
+    internal fun checkOrderOnlyDrink(menuItems: MutableList<MenuItem>) {
+        require(menuItems.any { it.menu.itemCategory != DRINK }) {"$ERROR_MESSAGE $INVALID_ORDER_MESSAGE"}
     }
 
 }

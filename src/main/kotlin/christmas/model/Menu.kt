@@ -34,6 +34,7 @@ import christmas.utils.Messages.INVALID_ORDER_MESSAGE
 import christmas.validator.ValidateOrder.checkCountZeroMenu
 import christmas.validator.ValidateOrder.checkLimitOrderMenu
 import christmas.validator.ValidateOrder.checkMinOrderMenu
+import christmas.validator.ValidateOrder.checkOrderOnlyDrink
 
 enum class Menu(val itemCategory: String, val itemName: String, val itemPrice: Int) {
     APPETIZER_MUSHROOM_SOUP(APPETIZER, MUSHROOM_SOUP, MUSHROOM_SOUP_COST),
@@ -51,6 +52,7 @@ enum class Menu(val itemCategory: String, val itemName: String, val itemPrice: I
     DRINK_ZERO_COLA(DRINK, ZERO_COKE, ZERO_COKE_COST),
     DRINK_RED_WINE(DRINK, RED_WINE, RED_WINE_COST),
     DRINK_CHAMPAGNE(DRINK, CHAMPAGNE, CHAMPAGNE_COST)
+
 }
 
 fun createMenuItem(item: String): MenuItem {
@@ -74,6 +76,8 @@ fun createMenuItems(items: List<String>): List<MenuItem> {
     }
     checkMinOrderMenu(items)
     checkLimitOrderMenu(menuItems)
+    checkOrderOnlyDrink(menuItems)
+
     return menuItems
 }
 

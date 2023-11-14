@@ -1,22 +1,20 @@
-package christmas.controller
+package christmas.domain
 
-import christmas.domain.Date
-import christmas.domain.TotalAmount
 import christmas.repository.MenuItem
 import christmas.utils.Constants
 import christmas.utils.Constants.CHAMPAGNE_COST
 import christmas.utils.Constants.MIN_ORDER_COST
 import christmas.view.OutputView
 
-class ResultController(
+class PromotionResult(
     private val menuItems: List<MenuItem>,
     private val outputView: OutputView,
     date: Date
 ) {
 
     private lateinit var totalAmount: TotalAmount
-    private var saleController = SaleController(date)
-    private var badgeController = BadgeController(saleController, outputView)
+    private var payment = Payment(date)
+    private var eventBadge = EventBadge(payment, outputView)
 
     init {
         outputView.printPreviewEvent(date.getDate())
@@ -31,7 +29,7 @@ class ResultController(
         discountDetail(minOrderPrice)
         totalDiscountAmount(minOrderPrice)
         afterDiscountAmount()
-        badgeController.processDiscountEventBadge()
+        eventBadge.processDiscountEventBadge()
     }
 
 
@@ -65,13 +63,13 @@ class ResultController(
 
 
     private fun discountDetail(minOrderPrice: Boolean) {
-        val discountDetails = saleController.saleStart(menuItems)
+        val discountDetails = payment.saleStart(menuItems)
         outputView.printDiscountDetail(discountDetails, minOrderPrice)
     }
 
 
     private fun totalDiscountAmount(minOrderPrice: Boolean) {
-        val totalDiscount = saleController.totalDiscountAmount()
+        val totalDiscount = payment.totalDiscountAmount()
         outputView.printTotalDiscountPrice(totalDiscount, minOrderPrice)
     }
 
@@ -85,7 +83,7 @@ class ResultController(
     private fun calculateTotalPriceAfterDiscount(): Int {
         val totalAmount = TotalAmount(menuItems).getTotalAmount()
         val champagneCost = getChampagne(menuItems) * CHAMPAGNE_COST
-        val totalDiscount = saleController.totalDiscountAmount()
+        val totalDiscount = payment.totalDiscountAmount()
         return totalAmount + champagneCost - totalDiscount
     }
 }

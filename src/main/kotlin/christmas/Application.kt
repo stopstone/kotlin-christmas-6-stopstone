@@ -1,10 +1,10 @@
 package christmas
 
-import christmas.controller.PromotionController
+import christmas.controller.PromotionManager
 import christmas.view.InputView
 import christmas.view.OutputView
 
 fun main() {
-    val promotionController = PromotionController(InputView(), OutputView())
-    promotionController.promotionStart()
+    val promotionManager = PromotionManager(InputView(), OutputView())
+    promotionManager.promotionStart()
 }

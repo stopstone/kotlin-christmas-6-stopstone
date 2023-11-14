@@ -1,9 +1,9 @@
-package christmas.controller
+package christmas.domain
 
 import christmas.model.Badge
 import christmas.view.OutputView
 
-class BadgeController(private val saleController: SaleController, private val outputView: OutputView) {
+class EventBadge(private val payment: Payment, private val outputView: OutputView) {
     internal fun choiceBadge(totalDiscount: Int): String {
         val selectedBadge = Badge.entries.firstOrNull { totalDiscount >= it.threshold } ?: Badge.NONE
         return selectedBadge.displayBadge
@@ -16,7 +16,7 @@ class BadgeController(private val saleController: SaleController, private val ou
 
 
     private fun calculateTotalDiscount(): Int {
-        return saleController.totalDiscountAmount()
+        return payment.totalDiscountAmount()
     }
 
 

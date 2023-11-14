@@ -1,7 +1,5 @@
-package christmas.controller
+package christmas.domain
 
-import christmas.domain.Date
-import christmas.domain.TotalAmount
 import christmas.model.*
 import christmas.repository.MenuItem
 import christmas.repository.SaleItem
@@ -21,7 +19,7 @@ import christmas.utils.Constants.TUE
 import christmas.utils.Constants.WED
 import christmas.utils.Constants.WEEK_DISCOUNT
 
-class SaleController(private val date: Date) {
+class Payment(private val date: Date) {
     private val saleItems = mutableListOf<SaleItem>()
     fun saleStart(menuItems: List<MenuItem>): MutableList<SaleItem> {
         saleOfChristmas(date)

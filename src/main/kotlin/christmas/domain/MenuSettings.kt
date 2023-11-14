@@ -1,4 +1,4 @@
-package christmas.controller
+package christmas.domain
 
 import christmas.model.Menu
 import christmas.repository.MenuItem
@@ -12,7 +12,7 @@ import christmas.validator.UserCaution.checkOrderOnlyDrink
 
 
 
-class MenuController {
+class MenuSettings {
     fun createMenuItem(item: String): MenuItem {
         try {
             val (menu, count) = item.split(ITEMS_DELIMITER)

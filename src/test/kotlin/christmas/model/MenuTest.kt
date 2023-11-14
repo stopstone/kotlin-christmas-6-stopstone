@@ -1,7 +1,6 @@
 package christmas.model
 
-import christmas.controller.MenuController
-import christmas.validator.ValidateOrder.checkCountZeroMenu
+import christmas.domain.MenuSettings
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.assertThrows
@@ -9,13 +8,13 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class MenuTest {
-    val menuController = MenuController()
+    val menuSettings = MenuSettings()
     @ParameterizedTest
     @DisplayName("메뉴를 입력받을 떄 쉼표 구분자가 없거나 다를 경우 예외처리")
     @ValueSource(strings = ["타파스-1.제로콜라-1"])
     fun menuDelimiterTest(input: String) {
         assertThrows<IllegalArgumentException> {
-            menuController.createMenuItem(input)
+            menuSettings.createMenuItem(input)
         }
     }
 
@@ -24,7 +23,7 @@ class MenuTest {
     @ValueSource(strings = ["타파스%1,제로콜라-1", "타파스1,제로콜라-1", "1-타파스,제로콜라-1"])
     fun menuCountTest(input: String) {
         assertThrows<IllegalArgumentException> {
-            menuController.createMenuItem(input)
+            menuSettings.createMenuItem(input)
         }
     }
 
@@ -33,7 +32,7 @@ class MenuTest {
     @ValueSource(strings = ["타파스-하나,제로콜라-1"])
     fun menuCountNotIntegerTest(input: String) {
         assertThrows<IllegalArgumentException> {
-            menuController.createMenuItem(input)
+            menuSettings.createMenuItem(input)
         }
     }
 
@@ -42,7 +41,7 @@ class MenuTest {
     @ValueSource(strings = ["타파스-0,제로콜라-1"])
     fun checkCountZeroMenuTest(input: String) {
         assertThrows<IllegalArgumentException> {
-            menuController.createMenuItem(input)
+            menuSettings.createMenuItem(input)
         }
     }
 
@@ -51,7 +50,7 @@ class MenuTest {
     @DisplayName("메뉴의 총 개수의 합이 20이 넘는 경우 예외처리")
     fun checkLimitOrderMenuTest(input: String) {
         assertThrows<IllegalArgumentException> {
-            menuController.createMenuItem(input)
+            menuSettings.createMenuItem(input)
         }
     }
 
@@ -60,7 +59,7 @@ class MenuTest {
     @DisplayName("입력받은 메뉴가 메뉴판에 없는 경우 예외처리")
     fun findMenuItemsTest(input: String) {
         assertThrows<IllegalArgumentException> {
-            menuController.findMenuItems(input)
+            menuSettings.findMenuItems(input)
         }
     }
 

@@ -30,6 +30,10 @@ object Constants {
     const val FRI = 5
     const val SAT = 6
 
+    const val BASE_DAY = 5
+    const val WEEK = 7
+
+
     const val APPETIZER = "애피타이저"
     const val MUSHROOM_SOUP = "양송이수프"
     const val MUSHROOM_SOUP_COST = 6_000
@@ -90,4 +94,7 @@ object Constants {
     const val WEEKEND_SALE_NAME = "주말 할인"
     const val SPECIAL_SALE_NAME = "특별 할인"
     const val PRESENT_EVENT_NAME = "증정 이벤트"
+
+
+
 }

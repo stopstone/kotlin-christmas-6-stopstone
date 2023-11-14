@@ -6,7 +6,6 @@ import christmas.utils.Constants.CHAMPAGNE
 import christmas.utils.Constants.MINUS
 import christmas.utils.Constants.NOTHING
 import christmas.utils.Constants.SOME_COUNT
-import christmas.utils.Constants.WON
 import christmas.utils.Messages.AFTER_DISCOUNT_PRICE
 import christmas.utils.Messages.BEFORE_DISCOUNT_AMOUNT
 import christmas.utils.Messages.DECEMBER_EVENT_BADGE
@@ -52,7 +51,7 @@ class OutputView {
 
     fun beforeDiscountTotalAmount(totalAmount: Int) {
         println(BEFORE_DISCOUNT_AMOUNT)
-        println("${formatNumberWithComma(totalAmount)}${WON}")
+        println(formatNumberWithComma(totalAmount))
         printBlank()
     }
 
@@ -82,13 +81,13 @@ class OutputView {
 
     private fun printSingleDiscountDetail(discountItem: SaleItem) {
         val formattedDiscount = formatNumberWithComma(discountItem.discountAmount * MINUS)
-        println("${discountItem.sale.saleName}: $formattedDiscount$WON")
+        println("${discountItem.sale.saleName}: $formattedDiscount")
     }
 
     fun printTotalDiscountPrice(totalDiscount: Int, minOrderPrice: Boolean) {
         println(TOTAL_DISCOUNT_PRICE)
         if (minOrderPrice) {
-            println("${formatNumberWithComma(totalDiscount * MINUS)}${WON}")
+            println(formatNumberWithComma(totalDiscount * MINUS))
         }
         if (!minOrderPrice) {
             println(NOTHING)
@@ -98,7 +97,7 @@ class OutputView {
 
     fun printDiscountAfterPrice(afterDiscountPrice: Int) {
         println(AFTER_DISCOUNT_PRICE)
-        println("${formatNumberWithComma(afterDiscountPrice)}$WON")
+        println(formatNumberWithComma(afterDiscountPrice))
         printBlank()
     }
 

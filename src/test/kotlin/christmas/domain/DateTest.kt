@@ -28,8 +28,8 @@ class DateTest {
     @DisplayName("일자가 숫자가 아닌 다른 형태로 입력될 경우")
     @ValueSource(strings = ["!", "Wooteco", "2:", "우아한"])
     fun readDateNumberTest(input: String) {
-        assertThrows<NumberFormatException> {
-            println(Date(input).getDate())
+        assertThrows<IllegalArgumentException> {
+            Date(input)
         }
     }
 }

@@ -1,5 +1,6 @@
 package christmas.model
 
+import christmas.repository.MenuItem
 import christmas.utils.Constants.APPETIZER
 import christmas.utils.Constants.BBQ
 import christmas.utils.Constants.BBQ_COST
@@ -83,5 +84,3 @@ fun findMenuItems(menuName: String): Menu {
     return Menu.entries.find { it.itemName == menuName }
         ?: throw IllegalArgumentException("$ERROR_MESSAGE $INVALID_ORDER_MESSAGE")
 }
-
-data class MenuItem(val menu: Menu, val count: Int)

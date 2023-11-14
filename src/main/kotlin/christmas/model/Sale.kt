@@ -13,5 +13,3 @@ enum class Sale(val saleName: String) {
     SPECIAL_SALE(SPECIAL_SALE_NAME),
     PRESENT_EVENT(PRESENT_EVENT_NAME),
 }
-
-data class SaleItem(val sale: Sale, val discountAmount: Int)

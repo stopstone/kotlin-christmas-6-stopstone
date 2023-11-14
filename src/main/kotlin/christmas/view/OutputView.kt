@@ -1,7 +1,7 @@
 package christmas.view
 
-import christmas.model.MenuItem
-import christmas.model.SaleItem
+import christmas.repository.MenuItem
+import christmas.repository.SaleItem
 import christmas.utils.Constants.CHAMPAGNE
 import christmas.utils.Constants.MINUS
 import christmas.utils.Constants.NOTHING

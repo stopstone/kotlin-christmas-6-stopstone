@@ -1,8 +1,8 @@
 package christmas.controller
 
 import christmas.domain.Date
-import christmas.model.MenuItem
 import christmas.domain.TotalAmount
+import christmas.repository.MenuItem
 import christmas.utils.Constants
 import christmas.utils.Constants.CHAMPAGNE_COST
 import christmas.utils.Constants.MIN_ORDER_COST

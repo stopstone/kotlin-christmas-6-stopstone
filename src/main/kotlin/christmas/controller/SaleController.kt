@@ -3,6 +3,8 @@ package christmas.controller
 import christmas.domain.Date
 import christmas.domain.TotalAmount
 import christmas.model.*
+import christmas.repository.MenuItem
+import christmas.repository.SaleItem
 import christmas.utils.Constants.CHRISTMAS_DISCOUNT
 import christmas.utils.Constants.DISCOUNT_PLUS
 import christmas.utils.Constants.DISCOUNT_START

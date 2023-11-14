@@ -1,6 +1,6 @@
 package christmas.validator
 
-import christmas.model.MenuItem
+import christmas.repository.MenuItem
 import christmas.utils.Constants
 import christmas.utils.ErrorMessage.ERROR_MESSAGE
 import christmas.utils.ErrorMessage.INVALID_ORDER_MESSAGE

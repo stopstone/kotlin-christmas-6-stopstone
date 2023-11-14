@@ -1,6 +1,6 @@
 package christmas.domain
 
-import christmas.model.MenuItem
+import christmas.repository.MenuItem
 
 class TotalAmount(private val menuItems: List<MenuItem>) {
     fun getTotalAmount(): Int {

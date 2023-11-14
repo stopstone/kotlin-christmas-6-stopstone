@@ -4,6 +4,8 @@ package christmas.controller
 import christmas.domain.Date
 import christmas.model.createMenuItems
 import christmas.model.*
+import christmas.utils.ErrorMessage.ERROR_MESSAGE
+import christmas.utils.ErrorMessage.INVALID_ORDER_MESSAGE
 import christmas.validator.ValidateOrder.checkDuplicateMenu
 import christmas.view.InputView
 import christmas.view.OutputView
@@ -30,9 +32,9 @@ class PromotionController(private val inputView: InputView, private val outputVi
                 date = Date(inputView.inputDate())
                 break
             } catch (e: IllegalArgumentException) {
-                println(e.message)
+                throw IllegalArgumentException("$ERROR_MESSAGE $INVALID_ORDER_MESSAGE")
             } catch (e: NumberFormatException) {
-                println(e.message)
+                throw NumberFormatException("$ERROR_MESSAGE $INVALID_ORDER_MESSAGE")
             }
         }
     }

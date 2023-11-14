@@ -14,11 +14,13 @@ class PromotionController(private val inputView: InputView, private val outputVi
 
     private lateinit var date: Date
     private lateinit var menuItems: List<MenuItem>
+    private val menuController = MenuController()
 
     fun promotionStart() {
         readDateNumber()
         orderMenu()
         ResultController(menuItems, outputView, date)
+
     }
 
 
@@ -42,7 +44,7 @@ class PromotionController(private val inputView: InputView, private val outputVi
         while (true) {
             try {
                 val items = checkDuplicateMenu(inputView.inputMenu())
-                menuItems = createMenuItems(items)
+                menuItems = menuController.createMenuItems(items)
                 break
             } catch (e: IllegalArgumentException) {
                 println(e.message)

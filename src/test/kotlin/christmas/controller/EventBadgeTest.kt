@@ -13,7 +13,7 @@ class EventBadgeTest {
     @DisplayName("혜택 금액에 따라 뱃지가 정상적으로 부여되는지 확인")
     @ValueSource(ints = [0, 5000, 10000, 20000])
     fun readDateNumberEmptyTest(input: Int) {
-        val eventBadge = EventBadge(Payment(Date("1")), OutputView())
+        val eventBadge = EventBadge(Payment(Date("1")))
         println(eventBadge.choiceBadge(input))
     }
 }

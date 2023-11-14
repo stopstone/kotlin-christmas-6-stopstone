@@ -1,7 +1,6 @@
 package christmas.domain
 
 import christmas.model.Badge
-import christmas.view.OutputView
 
 class EventBadge(private val payment: Payment) {
     internal fun choiceBadge(totalDiscount: Int): String {

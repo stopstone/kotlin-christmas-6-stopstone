@@ -76,9 +76,14 @@ class PromotionResult(
 
     private fun afterDiscountAmount(minOrderPrice: Boolean) {
         val champagneCost = getChampagne(menuItems) * CHAMPAGNE_COST
-        val totalDiscount = payment.totalDiscountAmount()
+        val totalDiscount = minOrderDiscount(minOrderPrice, payment.totalDiscountAmount())
         val totalAmount = TotalAmount(menuItems).getTotalAmount() + champagneCost
 
-        outputView.printDiscountAfterPrice(totalAmount, totalDiscount, minOrderPrice)
+        outputView.printDiscountAfterPrice(totalAmount - totalDiscount)
+    }
+
+    private fun minOrderDiscount(minOrderPrice: Boolean, totalDiscount: Int): Int {
+        if (!minOrderPrice) return 0
+        return totalDiscount
     }
 }

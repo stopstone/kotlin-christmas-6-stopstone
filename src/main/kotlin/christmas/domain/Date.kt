@@ -3,7 +3,8 @@ package christmas.domain
 import christmas.utils.Constants
 import christmas.utils.Constants.BASE_DAY
 import christmas.utils.Constants.WEEK
-import christmas.utils.Messages
+import christmas.utils.ErrorMessage.ERROR_MESSAGE
+import christmas.utils.ErrorMessage.INVALID_DATE_MESSAGE
 
 class Date(private val dateNumber: String) {
     init {
@@ -25,10 +26,10 @@ class Date(private val dateNumber: String) {
 
     private fun requireValidDateNumber(dateNumber: String) {
         require(dateNumber.isNotEmpty() && dateNumber.all { it.isDigit() }) {
-            "${Messages.ERROR_MESSAGE} ${Messages.INVALID_DATE_MESSAGE}"
+            "$ERROR_MESSAGE $INVALID_DATE_MESSAGE"
         }
         require(dateNumber.toInt() in Constants.MIN_DATE..Constants.MAX_DATE) {
-            "${Messages.ERROR_MESSAGE} ${Messages.INVALID_DATE_MESSAGE}"
+            "$ERROR_MESSAGE $INVALID_DATE_MESSAGE"
         }
     }
 

@@ -12,10 +12,4 @@ object Messages {
     const val TOTAL_DISCOUNT_PRICE = "<총혜택 금액>"
     const val AFTER_DISCOUNT_PRICE = "<할인 후 예상 결제 금액>"
     const val DECEMBER_EVENT_BADGE = "<12월 이벤트 배지>"
-
-
-    const val ERROR_MESSAGE = "[ERROR]"
-    const val INVALID_DATE_MESSAGE = "유효하지 않은 날짜입니다. 다시 입력해 주세요."
-    const val INVALID_ORDER_MESSAGE = "유효하지 않은 주문입니다. 다시 입력해 주세요."
-
 }

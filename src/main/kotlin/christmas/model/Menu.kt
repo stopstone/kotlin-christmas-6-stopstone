@@ -29,8 +29,8 @@ import christmas.utils.Constants.T_BORN
 import christmas.utils.Constants.T_BORN_COST
 import christmas.utils.Constants.ZERO_COKE
 import christmas.utils.Constants.ZERO_COKE_COST
-import christmas.utils.Messages.ERROR_MESSAGE
-import christmas.utils.Messages.INVALID_ORDER_MESSAGE
+import christmas.utils.ErrorMessage.ERROR_MESSAGE
+import christmas.utils.ErrorMessage.INVALID_ORDER_MESSAGE
 import christmas.validator.ValidateOrder.checkCountZeroMenu
 import christmas.validator.UserCaution.checkLimitOrderMenu
 import christmas.validator.ValidateOrder.checkMinOrderMenu

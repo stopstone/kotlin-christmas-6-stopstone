@@ -3,8 +3,8 @@ package christmas.validator
 import christmas.model.MenuItem
 import christmas.utils.Constants.ITEMS_DELIMITER
 import christmas.utils.Constants.MENU_DELIMITER
-import christmas.utils.Messages.ERROR_MESSAGE
-import christmas.utils.Messages.INVALID_ORDER_MESSAGE
+import christmas.utils.ErrorMessage.ERROR_MESSAGE
+import christmas.utils.ErrorMessage.INVALID_ORDER_MESSAGE
 
 object ValidateOrder {
     internal fun checkDuplicateMenu(input: String): List<String> {

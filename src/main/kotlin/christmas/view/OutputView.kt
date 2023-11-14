@@ -58,10 +58,10 @@ class OutputView {
 
     fun printPresentMenu(champagne: Int, minOrderPrice: Boolean) {
         println(PRESENT_MENU)
-        if (minOrderPrice) {
+        if (minOrderPrice && champagne != 0) {
             println("$CHAMPAGNE ${champagne}${SOME_COUNT}")
         }
-        if (!minOrderPrice) {
+        if (!minOrderPrice || champagne == 0) {
             println(NOTHING)
         }
         printBlank()

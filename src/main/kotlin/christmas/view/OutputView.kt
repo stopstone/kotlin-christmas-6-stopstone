@@ -95,9 +95,14 @@ class OutputView {
         printBlank()
     }
 
-    fun printDiscountAfterPrice(afterDiscountPrice: Int) {
+    fun printDiscountAfterPrice(totalAmount: Int, totalDiscount: Int, minOrderPrice: Boolean) {
         println(AFTER_DISCOUNT_PRICE)
-        println(formatNumberWithComma(afterDiscountPrice))
+        if (minOrderPrice) {
+            println(formatNumberWithComma(totalAmount - totalDiscount))
+        }
+        if (!minOrderPrice) {
+            println(formatNumberWithComma(totalAmount))
+        }
         printBlank()
     }
 

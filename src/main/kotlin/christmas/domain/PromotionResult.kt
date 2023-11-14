@@ -3,7 +3,6 @@ package christmas.domain
 import christmas.repository.MenuItem
 import christmas.utils.Constants
 import christmas.utils.Constants.CHAMPAGNE_COST
-import christmas.utils.Constants.MIN_ORDER_COST
 import christmas.validator.UserCaution.isOrderAmountValid
 import christmas.view.OutputView
 
@@ -29,7 +28,7 @@ class PromotionResult(
         beforeDiscountAmount()
         discountDetail(minOrderPrice)
         totalDiscountAmount(minOrderPrice)
-        afterDiscountAmount()
+        afterDiscountAmount(minOrderPrice)
         outputView.printEventBadge(eventBadge.processDiscountEventBadge())
     }
 
@@ -75,16 +74,11 @@ class PromotionResult(
     }
 
 
-    private fun afterDiscountAmount() {
-        val totalPriceAfterDiscount = calculateTotalPriceAfterDiscount()
-        outputView.printDiscountAfterPrice(totalPriceAfterDiscount)
-    }
-
-
-    private fun calculateTotalPriceAfterDiscount(): Int {
-        val totalAmount = TotalAmount(menuItems).getTotalAmount()
+    private fun afterDiscountAmount(minOrderPrice: Boolean) {
         val champagneCost = getChampagne(menuItems) * CHAMPAGNE_COST
         val totalDiscount = payment.totalDiscountAmount()
-        return totalAmount + champagneCost - totalDiscount
+        val totalAmount = TotalAmount(menuItems).getTotalAmount() + champagneCost
+
+        outputView.printDiscountAfterPrice(totalAmount, totalDiscount, minOrderPrice)
     }
 }

@@ -52,7 +52,6 @@ enum class Menu(val itemCategory: String, val itemName: String, val itemPrice: I
     DRINK_ZERO_COLA(DRINK, ZERO_COKE, ZERO_COKE_COST),
     DRINK_RED_WINE(DRINK, RED_WINE, RED_WINE_COST),
     DRINK_CHAMPAGNE(DRINK, CHAMPAGNE, CHAMPAGNE_COST)
-
 }
 
 fun createMenuItem(item: String): MenuItem {
@@ -68,12 +67,8 @@ fun createMenuItem(item: String): MenuItem {
 }
 
 fun createMenuItems(items: List<String>): List<MenuItem> {
-    val menuItems = mutableListOf<MenuItem>()
+    val menuItems = items.map { createMenuItem(it) }
 
-    for (item in items) {
-        val menuItem = createMenuItem(item)
-        menuItems.add(menuItem)
-    }
     checkMinOrderMenu(items)
     checkLimitOrderMenu(menuItems)
     checkOrderOnlyDrink(menuItems)

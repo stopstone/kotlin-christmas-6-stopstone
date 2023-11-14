@@ -10,7 +10,7 @@ object UserCaution {
         require(limit <= Constants.ORDER_LIMIT) {"${Messages.ERROR_MESSAGE} ${Messages.INVALID_ORDER_MESSAGE}"}
     }
 
-    internal fun checkOrderOnlyDrink(menuItems: MutableList<MenuItem>) {
+    internal fun checkOrderOnlyDrink(menuItems: List<MenuItem>) {
         require(menuItems.any { it.menu.itemCategory != Constants.DRINK }) {"${Messages.ERROR_MESSAGE} ${Messages.INVALID_ORDER_MESSAGE}"}
     }
 }

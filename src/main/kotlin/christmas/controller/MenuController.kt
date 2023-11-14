@@ -16,7 +16,7 @@ class MenuController {
     fun createMenuItem(item: String): MenuItem {
         try {
             val (menu, count) = item.split(ITEMS_DELIMITER)
-            checkCountZeroMenu(count)
+
             return MenuItem(findMenuItems(menu), count.toInt())
         } catch (e: IllegalArgumentException) {
             throw IllegalArgumentException("$ERROR_MESSAGE $INVALID_ORDER_MESSAGE")
@@ -33,6 +33,7 @@ class MenuController {
     }
 
     private fun checkMenuItems(menuItems: List<MenuItem>) {
+        checkCountZeroMenu(menuItems)
         checkMinOrderMenu(menuItems)
         checkLimitOrderMenu(menuItems)
         checkOrderOnlyDrink(menuItems)

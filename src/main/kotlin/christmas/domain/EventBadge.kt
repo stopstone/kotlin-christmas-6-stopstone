@@ -8,14 +8,11 @@ class EventBadge(private val payment: Payment) {
         return selectedBadge.displayBadge
     }
 
-
     fun processDiscountEventBadge(): String {
         return calculateTotalDiscount().let(::choiceBadge)
     }
 
-
     private fun calculateTotalDiscount(): Int {
         return payment.totalDiscountAmount()
     }
-
 }

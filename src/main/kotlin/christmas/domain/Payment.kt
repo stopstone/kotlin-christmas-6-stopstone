@@ -30,11 +30,9 @@ class Payment(private val date: Date) {
         return saleItems
     }
 
-
     fun totalDiscountAmount(): Int {
         return saleItems.sumOf { it.discountAmount }
     }
-
 
     private fun saleOfChristmas(date: Date) {
         val dateNumber = date.getDate()
@@ -51,7 +49,6 @@ class Payment(private val date: Date) {
         }
     }
 
-
     private fun saleOfWeekendOrWeekday(date: Date, menuItems: List<MenuItem>) {
         val dateNumber = date.getDate()
         val day = date.calculateDay(dateNumber)
@@ -67,7 +64,6 @@ class Payment(private val date: Date) {
         }
     }
 
-
     private fun saleOfWeekend(menuItems: List<MenuItem>) {
         val resultMainSale = menuItems.filter { it.menu.itemCategory == "메인" }
             .map { it.count * WEEK_DISCOUNT }
@@ -76,7 +72,6 @@ class Payment(private val date: Date) {
             saleItems.add(SaleItem(Sale.WEEKEND_SALE, it))
         }
     }
-
 
     private fun saleOfWeekday(menuItems: List<MenuItem>) {
         val resultDessertSale = menuItems.filter { it.menu.itemCategory == "디저트" }
@@ -87,12 +82,10 @@ class Payment(private val date: Date) {
         }
     }
 
-
     private fun isSpecialDay(dateNumber: Int): Boolean {
         val starDays = listOf(3, 10, 17, 24, 25, 31)
         return dateNumber in starDays
     }
-
 
     private fun saleOfSpecial(date: Date) {
         val dateNumber = date.getDate()

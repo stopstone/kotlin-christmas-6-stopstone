@@ -67,10 +67,7 @@ object Constants {
     const val CHAMPAGNE_COST = 25_000
 
 
-
     const val MIN_ORDER_COST = 10_000
-
-
 
 
     // Badge

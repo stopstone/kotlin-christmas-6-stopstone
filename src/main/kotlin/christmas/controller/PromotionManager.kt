@@ -25,7 +25,6 @@ class PromotionManager(private val inputView: InputView, private val outputView:
 
     }
 
-
     private fun readDateNumber() {
         outputView.inputVisitDateMessage()
         while (true) {
@@ -39,7 +38,6 @@ class PromotionManager(private val inputView: InputView, private val outputView:
             }
         }
     }
-
 
     private fun orderMenu() {
         outputView.printOrderToMenu()

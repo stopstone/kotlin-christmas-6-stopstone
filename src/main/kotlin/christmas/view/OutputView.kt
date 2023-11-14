@@ -94,7 +94,6 @@ class OutputView {
         }
         printBlank()
     }
-
     fun printDiscountAfterPrice(totalAmount: Int) {
         println(AFTER_DISCOUNT_PRICE)
         println(formatNumberWithComma(totalAmount))

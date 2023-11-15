@@ -84,10 +84,14 @@ class OutputView {
         println("${discountItem.sale.saleName}: $formattedDiscount")
     }
 
-    fun printTotalDiscountPrice(totalDiscount: Int) {
+    fun printTotalDiscountPrice(totalDiscount: Int, minOrderPrice: Boolean) {
         println(TOTAL_DISCOUNT_PRICE)
-        println(formatNumberWithComma(totalDiscount * MINUS))
-
+        if (minOrderPrice) {
+            println(formatNumberWithComma(totalDiscount * MINUS))
+        }
+        if (!minOrderPrice) {
+            println(NOTHING)
+        }
         printBlank()
     }
     fun printDiscountAfterPrice(totalAmount: Int) {

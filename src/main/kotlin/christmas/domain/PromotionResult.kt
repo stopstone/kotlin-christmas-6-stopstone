@@ -23,10 +23,10 @@ class PromotionResult(
     private fun menuSettings() {
         val minOrderPrice = isOrderAmountValid(menuItems)
         orderMenuDetail()
-        beforeDiscountAmount()
         presentEventMenu(minOrderPrice)
+        beforeDiscountAmount()
         discountDetail(minOrderPrice)
-        totalDiscountAmount()
+        totalDiscountAmount(minOrderPrice)
         afterDiscountAmount(minOrderPrice)
         outputView.printEventBadge(eventBadge.processDiscountEventBadge())
     }
@@ -60,9 +60,9 @@ class PromotionResult(
         outputView.printDiscountDetail(discountDetails, minOrderPrice)
     }
 
-    private fun totalDiscountAmount() {
+    private fun totalDiscountAmount(minOrderPrice: Boolean) {
         val totalDiscount = payment.totalDiscountAmount()
-        outputView.printTotalDiscountPrice(totalDiscount)
+        outputView.printTotalDiscountPrice(totalDiscount, minOrderPrice)
     }
 
     private fun afterDiscountAmount(minOrderPrice: Boolean) {

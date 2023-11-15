@@ -73,7 +73,7 @@ class OutputView {
                 .filter { it.discountAmount != 0 }
                 .forEach { printSingleDiscountDetail(it) }
         }
-        if (!minOrderPrice) {
+        if (!minOrderPrice || discountDetails.sumOf { it.discountAmount }  == 0) {
             println(NOTHING)
         }
         printBlank()

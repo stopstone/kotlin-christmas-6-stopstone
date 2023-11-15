@@ -5,7 +5,9 @@ import christmas.repository.SaleItem
 import christmas.utils.Constants.CHAMPAGNE
 import christmas.utils.Constants.MINUS
 import christmas.utils.Constants.NOTHING
+import christmas.utils.Constants.NOTHING_DISCOUNT
 import christmas.utils.Constants.SOME_COUNT
+import christmas.utils.Constants.WON
 import christmas.utils.Messages.AFTER_DISCOUNT_PRICE
 import christmas.utils.Messages.BEFORE_DISCOUNT_AMOUNT
 import christmas.utils.Messages.DECEMBER_EVENT_BADGE
@@ -90,7 +92,7 @@ class OutputView {
             println(formatNumberWithComma(totalDiscount * MINUS))
         }
         if (!minOrderPrice) {
-            println(NOTHING)
+            println("$NOTHING_DISCOUNT$WON")
         }
         printBlank()
     }

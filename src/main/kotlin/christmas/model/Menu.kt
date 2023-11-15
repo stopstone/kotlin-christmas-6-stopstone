@@ -1,6 +1,5 @@
 package christmas.model
 
-import christmas.utils.Constants
 import christmas.utils.Constants.APPETIZER
 import christmas.utils.Constants.BBQ
 import christmas.utils.Constants.BBQ_COST

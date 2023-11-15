@@ -1,8 +1,10 @@
 package christmas.domain
 
 import christmas.repository.MenuItem
-import christmas.utils.Constants
 import christmas.utils.Constants.CHAMPAGNE_COST
+import christmas.utils.Constants.NOTHING_DISCOUNT
+import christmas.utils.Constants.PRESENT_AMOUNT
+import christmas.utils.Constants.PRESENT_DISCOUNT
 import christmas.validator.UserCaution.isOrderAmountValid
 import christmas.view.OutputView
 
@@ -46,13 +48,16 @@ class PromotionResult(
     }
 
     private fun presentEventMenu(minOrderPrice: Boolean) {
-        val champagne = getChampagne(menuItems)
+        val champagne = getChampagne(menuItems) / CHAMPAGNE_COST
         outputView.printPresentMenu(champagne, minOrderPrice)
     }
 
     private fun getChampagne(menuItems: List<MenuItem>): Int {
         val totalAmount = TotalAmount(menuItems)
-        return totalAmount.getTotalAmount() / Constants.PRESENT_AMOUNT
+        if (totalAmount.getTotalAmount() >= PRESENT_AMOUNT) {
+            return PRESENT_DISCOUNT
+        }
+        return NOTHING_DISCOUNT
     }
 
     private fun discountDetail(minOrderPrice: Boolean) {
@@ -66,7 +71,7 @@ class PromotionResult(
     }
 
     private fun afterDiscountAmount(minOrderPrice: Boolean) {
-        val champagneCost = getChampagne(menuItems) * CHAMPAGNE_COST
+        val champagneCost = getChampagne(menuItems)
         val totalDiscount = minOrderDiscount(minOrderPrice, payment.totalDiscountAmount())
         val totalAmount = TotalAmount(menuItems).getTotalAmount() + champagneCost
 

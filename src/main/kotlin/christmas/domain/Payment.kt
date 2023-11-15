@@ -99,7 +99,9 @@ class Payment(private val date: Date) {
 
     private fun saleOfPresent(menuItems: List<MenuItem>) {
         val totalAmount = TotalAmount(menuItems)
-        val champagne = totalAmount.getTotalAmount() / PRESENT_AMOUNT
-        saleItems.add(SaleItem(Sale.PRESENT_EVENT, champagne * PRESENT_DISCOUNT))
+        if (totalAmount.getTotalAmount() >= PRESENT_AMOUNT) {
+            saleItems.add(SaleItem(Sale.PRESENT_EVENT, PRESENT_DISCOUNT))
+        }
+
     }
 }

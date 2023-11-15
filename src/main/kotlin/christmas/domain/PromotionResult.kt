@@ -25,8 +25,8 @@ class PromotionResult(
     private fun menuSettings() {
         val minOrderPrice = isOrderAmountValid(menuItems)
         orderMenuDetail()
-        presentEventMenu(minOrderPrice)
         beforeDiscountAmount()
+        presentEventMenu(minOrderPrice)
         discountDetail(minOrderPrice)
         totalDiscountAmount(minOrderPrice)
         afterDiscountAmount(minOrderPrice)

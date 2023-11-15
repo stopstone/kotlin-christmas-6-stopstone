@@ -102,7 +102,7 @@ class OutputView {
 
     fun printEventBadge(badgeKind: String) {
         println(DECEMBER_EVENT_BADGE)
-        println(badgeKind)
+        print(badgeKind)
     }
 
     private fun printBlank() = println()

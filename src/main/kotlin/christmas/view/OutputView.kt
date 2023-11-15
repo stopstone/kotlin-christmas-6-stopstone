@@ -102,9 +102,15 @@ class OutputView {
         printBlank()
     }
 
-    fun printEventBadge(badgeKind: String) {
+    fun printEventBadge(badgeKind: String, minOrderPrice: Boolean) {
         println(DECEMBER_EVENT_BADGE)
-        print(badgeKind)
+        if (minOrderPrice) {
+            print(badgeKind)
+        }
+        if (!minOrderPrice) {
+            println(NOTHING)
+        }
+
     }
 
     private fun printBlank() = println()

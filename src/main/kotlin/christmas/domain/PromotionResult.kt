@@ -28,7 +28,7 @@ class PromotionResult(
         discountDetail(minOrderPrice)
         totalDiscountAmount(minOrderPrice)
         afterDiscountAmount(minOrderPrice)
-        outputView.printEventBadge(eventBadge.processDiscountEventBadge())
+        outputView.printEventBadge(eventBadge.processDiscountEventBadge(), minOrderPrice)
     }
 
     private fun orderMenuDetail() {

@@ -93,5 +93,4 @@ object Constants {
     const val PRESENT_EVENT_NAME = "증정 이벤트"
 
 
-
 }

@@ -10,12 +10,13 @@ object UserCaution {
     internal fun isOrderAmountValid(menuItems: List<MenuItem>): Boolean {
         return TotalAmount(menuItems).getTotalAmount() >= Constants.MIN_ORDER_COST
     }
+
     internal fun checkLimitOrderMenu(menuItems: List<MenuItem>) {
         val limit = menuItems.sumOf { it.count }
-        require(limit <= Constants.ORDER_LIMIT) {"$ERROR_MESSAGE $INVALID_ORDER_MESSAGE"}
+        require(limit <= Constants.ORDER_LIMIT) { "$ERROR_MESSAGE $INVALID_ORDER_MESSAGE" }
     }
 
     internal fun checkOrderOnlyDrink(menuItems: List<MenuItem>) {
-        require(menuItems.any { it.menu.itemCategory != Constants.DRINK }) {"$ERROR_MESSAGE $INVALID_ORDER_MESSAGE"}
+        require(menuItems.any { it.menu.itemCategory != Constants.DRINK }) { "$ERROR_MESSAGE $INVALID_ORDER_MESSAGE" }
     }
 }

@@ -9,9 +9,7 @@ import christmas.validator.UserCaution.isOrderAmountValid
 import christmas.view.OutputView
 
 class PromotionResult(
-    private val menuItems: List<MenuItem>,
-    private val outputView: OutputView,
-    date: Date
+    private val menuItems: List<MenuItem>, private val outputView: OutputView, date: Date
 ) {
 
     private var payment = Payment(date)

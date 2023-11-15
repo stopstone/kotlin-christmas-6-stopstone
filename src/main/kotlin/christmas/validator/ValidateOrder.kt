@@ -18,10 +18,10 @@ object ValidateOrder {
 
     internal fun checkCountZeroMenu(menuItems: List<MenuItem>) {
         val menuCount = menuItems.sumOf { it.count }
-        require(menuCount != 0) {"$ERROR_MESSAGE $INVALID_ORDER_MESSAGE"}
+        require(menuCount != 0) { "$ERROR_MESSAGE $INVALID_ORDER_MESSAGE" }
     }
 
     internal fun checkMinOrderMenu(menuItems: List<MenuItem>) {
-        require(menuItems.isNotEmpty()) {"$ERROR_MESSAGE $INVALID_ORDER_MESSAGE"}
+        require(menuItems.isNotEmpty()) { "$ERROR_MESSAGE $INVALID_ORDER_MESSAGE" }
     }
 }

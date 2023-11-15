@@ -71,11 +71,9 @@ class OutputView {
     fun printDiscountDetail(discountDetails: MutableList<SaleItem>, minOrderPrice: Boolean) {
         println(DISCOUNT_DETAIL)
         if (minOrderPrice) {
-            discountDetails
-                .filter { it.discountAmount != 0 }
-                .forEach { printSingleDiscountDetail(it) }
+            discountDetails.filter { it.discountAmount != 0 }.forEach { printSingleDiscountDetail(it) }
         }
-        if (!minOrderPrice || discountDetails.sumOf { it.discountAmount }  == 0) {
+        if (!minOrderPrice || discountDetails.sumOf { it.discountAmount } == 0) {
             println(NOTHING)
         }
         printBlank()
@@ -96,6 +94,7 @@ class OutputView {
         }
         printBlank()
     }
+
     fun printDiscountAfterPrice(totalAmount: Int) {
         println(AFTER_DISCOUNT_PRICE)
         println(formatNumberWithComma(totalAmount))

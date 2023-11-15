@@ -16,10 +16,10 @@ object Constants {
     const val DISCOUNT_START = 900
     const val DISCOUNT_PLUS = 100
 
-    const val SPECIAL_DISCOUNT = 1000
+    const val SPECIAL_DISCOUNT = 1_000
 
-    const val PRESENT_AMOUNT = 120000
-    const val PRESENT_DISCOUNT = 25000
+    const val PRESENT_AMOUNT = 120_000
+    const val PRESENT_DISCOUNT = 25_000
 
     // Week Numbering
     const val SUN = 0

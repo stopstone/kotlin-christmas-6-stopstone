@@ -4,9 +4,11 @@ import christmas.model.*
 import christmas.repository.MenuItem
 import christmas.repository.SaleItem
 import christmas.utils.Constants.CHRISTMAS_DISCOUNT
+import christmas.utils.Constants.DESSERT
 import christmas.utils.Constants.DISCOUNT_PLUS
 import christmas.utils.Constants.DISCOUNT_START
 import christmas.utils.Constants.FRI
+import christmas.utils.Constants.MAIN
 import christmas.utils.Constants.MON
 import christmas.utils.Constants.NO_DISCOUNT
 import christmas.utils.Constants.PRESENT_AMOUNT
@@ -65,7 +67,7 @@ class Payment(private val date: Date) {
     }
 
     private fun saleOfWeekend(menuItems: List<MenuItem>) {
-        val resultMainSale = menuItems.filter { it.menu.itemCategory == "메인" }
+        val resultMainSale = menuItems.filter { it.menu.itemCategory == MAIN }
             .map { it.count * WEEK_DISCOUNT }
             .firstOrNull()
         resultMainSale?.let {
@@ -74,7 +76,7 @@ class Payment(private val date: Date) {
     }
 
     private fun saleOfWeekday(menuItems: List<MenuItem>) {
-        val resultDessertSale = menuItems.filter { it.menu.itemCategory == "디저트" }
+        val resultDessertSale = menuItems.filter { it.menu.itemCategory == DESSERT }
             .map { it.count * WEEK_DISCOUNT }
             .firstOrNull()
         resultDessertSale?.let {
